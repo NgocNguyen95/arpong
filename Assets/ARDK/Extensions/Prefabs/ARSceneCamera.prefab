@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 81267771042147026}
   - component: {fileID: 8041774839936287112}
   - component: {fileID: 1021606229365629317}
-  - component: {fileID: 1232525141338169944}
+  - component: {fileID: 5585179873356927419}
   m_Layer: 0
   m_Name: ARSceneCamera
   m_TagString: MainCamera
@@ -127,7 +127,7 @@ MonoBehaviour:
   _targetTexture: {fileID: 0}
   _nearClippingPlane: 0.1
   _farClippingPlane: 100
---- !u!114 &1232525141338169944
+--- !u!114 &5585179873356927419
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
