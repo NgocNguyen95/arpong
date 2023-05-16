@@ -14,6 +14,8 @@ public class PaddleController : MonoBehaviour
     Touch touch;
     Vector3 targetPosition;
 
+    private float offset = 1.5f;
+
     bool _stopMove;
 
     void Start()
@@ -49,9 +51,7 @@ public class PaddleController : MonoBehaviour
 
                 if (hit.collider.tag == "Wall")
                 {
-                    Debug.Log($"[{nameof(PaddleController)}] {nameof(Update)} hit point: {hit.point}");
-                    var targetPoint = hit.point + hit.transform.TransformDirection(Vector3.forward) * 1.5f;
-                    Debug.Log($"[{nameof(PaddleController)}] {nameof(Update)} targetPoint: {targetPoint}");
+                    var targetPoint = hit.point + hit.transform.TransformDirection(Vector3.up) * offset;
                     targetPosition = targetPoint;
                     _stopMove = false;
                 }
@@ -64,8 +64,6 @@ public class PaddleController : MonoBehaviour
     {
         if (_stopMove)
             return;
-
-        Debug.Log($"[{nameof(PaddleController)}] {nameof(FixedUpdate)} hitPoint: {targetPosition}");
 
         // Calculate the new position for the paddle based on the horizontal input
         Vector3 newPosition = Vector3.MoveTowards(rb.position, targetPosition, speed * Time.fixedDeltaTime);
@@ -83,13 +81,11 @@ public class PaddleController : MonoBehaviour
         if (Physics.Raycast(ray, out hit, Mathf.Infinity))
         {
             Debug.DrawRay(ray.origin, hit.point, Color.yellow);
-            Debug.Log($"[{nameof(PaddleController)}] {nameof(HitTest)} hit: {hit.collider.name}");
 
             if (hit.collider.tag == "Wall")
             {
-                Debug.Log($"[{nameof(PaddleController)}] {nameof(HitTest)} hit point: {hit.point}");
-                var targetPoint = hit.point + hit.transform.TransformDirection(Vector3.forward) * 1.5f;
-                return hit.point;
+                var targetPoint = hit.point + hit.transform.TransformDirection(Vector3.up) * offset;
+                return targetPoint;
             }
         }
         return Vector3.zero;        
