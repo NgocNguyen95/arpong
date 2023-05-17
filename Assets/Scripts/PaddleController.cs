@@ -13,8 +13,9 @@ public class PaddleController : MonoBehaviour
     private float horizontalInput;
     Touch touch;
     Vector3 targetPosition;
+    private string goalTag = "Goal";
 
-    private float offset = 1.5f;
+    private float offset = 0.15f;
 
     bool _stopMove;
 
@@ -49,7 +50,7 @@ public class PaddleController : MonoBehaviour
                 Debug.DrawRay(ray.origin, hit.point, Color.yellow);
                 Debug.Log($"[{nameof(PaddleController)}] {nameof(Update)} hit: {hit.collider.name}");
 
-                if (hit.collider.tag == "Wall")
+                if (hit.collider.tag == goalTag)
                 {
                     var targetPoint = hit.point + hit.transform.TransformDirection(Vector3.up) * offset;
                     targetPosition = targetPoint;
@@ -82,7 +83,7 @@ public class PaddleController : MonoBehaviour
         {
             Debug.DrawRay(ray.origin, hit.point, Color.yellow);
 
-            if (hit.collider.tag == "Wall")
+            if (hit.collider.tag == goalTag)
             {
                 var targetPoint = hit.point + hit.transform.TransformDirection(Vector3.up) * offset;
                 return targetPoint;
