@@ -8,4 +8,14 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ARPong.unity
     guid: 231b973c15e67c746a214804d9c696ef
-  m_configObjects: {}
+  m_configObjects:
+    UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 2535c8382d77f9844a06ac354a7c4517,
+      type: 2}
+    UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: 11ca265e7a19af240a4cae0d868f3b19,
+      type: 2}
+    com.unity.input.settings: {fileID: 11400000, guid: c8259da42780e9f4ab18f9df04617cbb,
+      type: 2}
+    com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: b27cd4032321a47488385b4a864e8f4f,
+      type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: a07321bb6efe22a4aaea1e9f0d671565,
+      type: 2}
