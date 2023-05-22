@@ -5,6 +5,7 @@ public class EventManager
     private static EventManager _instance;
 
     public UnityEvent eventBoardPlaced = new EventBoardPlaced();
+    public UnityEvent<int> eventGoal = new EventGoal();
 
     public static EventManager Instance
     {
@@ -18,3 +19,5 @@ public class EventManager
 }
 
 public class EventBoardPlaced : UnityEvent { }
+
+public class EventGoal : UnityEvent<int> { }

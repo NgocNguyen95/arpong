@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ARPongTable : MonoBehaviour
 {
-    [SerializeField] GameObject goalPlayer1;
+    [SerializeField] GameObject player1Goal;
     [SerializeField] GameObject cylinder;
 
     [SerializeField] GameObject ballPrefab;
@@ -12,10 +12,10 @@ public class ARPongTable : MonoBehaviour
 
 
     private GameObject _ball;
-    private GameObject _paddlePlayer1;
+    private GameObject _player1Paddle;
 
     float _spawnRadius = 2f;
-    float _paddleOffset = 1.5f;
+    float _paddleOffset = 1.1f;
 
 
     private void Start()
@@ -27,6 +27,7 @@ public class ARPongTable : MonoBehaviour
     void AddEventListeners()
     {
         EventManager.Instance.eventBoardPlaced.AddListener(InitPlayGround);
+        EventManager.Instance.eventGoal.AddListener(Goal);
     }
 
 
@@ -57,9 +58,21 @@ public class ARPongTable : MonoBehaviour
 
     void InitPaddle()
     {
-        Vector3 spawnPosition = goalPlayer1.transform.position + goalPlayer1.transform.TransformDirection(Vector3.up) * _paddleOffset;
-        Quaternion spawnRotation = Quaternion.LookRotation(goalPlayer1.transform.up);
+        Vector3 spawnPosition = player1Goal.transform.position + player1Goal.transform.TransformDirection(Vector3.up) * _paddleOffset;
+        Quaternion spawnRotation = Quaternion.LookRotation(player1Goal.transform.up);
 
-        _paddlePlayer1 = Instantiate(paddlePrefab, spawnPosition, spawnRotation);
+        _player1Paddle = Instantiate(paddlePrefab, spawnPosition, spawnRotation);
+    }
+
+
+    void Goal(int playerNumber)
+    {
+        Destroy(_ball);
+
+        Timer.StartCooldown(3f, 
+            () => {
+                InitBall();
+            }
+        );
     }
 }

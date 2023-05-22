@@ -10,12 +10,11 @@ public class PaddleController : MonoBehaviour
     public float speed = 10f;
 
     private Rigidbody rb;
-    private float horizontalInput;
     Touch touch;
     Vector3 targetPosition;
     private string goalTag = "Goal";
 
-    private float offset = 1.5f;
+    private float offset = 1.1f;
 
     bool _stopMove;
 
@@ -47,9 +46,6 @@ public class PaddleController : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
-                Debug.DrawRay(ray.origin, hit.point, Color.yellow);
-                Debug.Log($"[{nameof(PaddleController)}] {nameof(Update)} hit: {hit.collider.name}");
-
                 if (hit.collider.tag == goalTag)
                 {
                     var targetPoint = hit.point + hit.transform.TransformDirection(Vector3.up) * offset;
@@ -81,8 +77,6 @@ public class PaddleController : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, Mathf.Infinity))
         {
-            Debug.DrawRay(ray.origin, hit.point, Color.yellow);
-
             if (hit.collider.tag == goalTag)
             {
                 var targetPoint = hit.point + hit.transform.TransformDirection(Vector3.up) * offset;

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Corner
   - Goal
+  - Ball
   layers:
   - Default
   - TransparentFX
