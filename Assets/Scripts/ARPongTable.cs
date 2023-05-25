@@ -15,7 +15,7 @@ public class ARPongTable : MonoBehaviour
     private GameObject _player1Paddle;
 
     float _spawnRadius = 2f;
-    float _paddleOffset = 1.1f;
+    float _paddleOffset = 0.5f;
 
 
     private void Start()

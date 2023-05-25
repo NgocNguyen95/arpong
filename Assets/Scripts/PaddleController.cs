@@ -14,7 +14,7 @@ public class PaddleController : MonoBehaviour
     Vector3 targetPosition;
     private string goalTag = "Goal";
 
-    private float offset = 1.1f;
+    private float offset = 0.5f;
 
     bool _stopMove;
 
