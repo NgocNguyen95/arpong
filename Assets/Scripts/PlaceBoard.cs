@@ -7,17 +7,18 @@ using UnityEngine.XR.ARSubsystems;
 public class PlaceBoard : MonoBehaviour
 {
     public GameObject cursor;
-    public ARRaycastManager raycastManager;
+    public ARRaycastManager arRaycastManager;
+    public ARAnchorManager arAnchorManager;
     private List<ARRaycastHit> hits = new List<ARRaycastHit>();
 
     void Update()
     {
         // Update cursor position
         Vector2 screenCenter = new Vector2(Screen.width / 2, Screen.height / 2);
-        if (raycastManager.Raycast(screenCenter, hits, TrackableType.Planes))
+        if (arRaycastManager.Raycast(screenCenter, hits, TrackableType.Planes))
         {
             Pose hitPose = hits[0].pose;
-            cursor.transform.position = hitPose.position;
+            cursor.transform.SetPositionAndRotation(hitPose.position, hitPose.rotation);
             cursor.SetActive(true);
         }
         else

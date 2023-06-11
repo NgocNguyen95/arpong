@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "953154876626",
+    "project_id": "ar-pong-269613",
+    "storage_bucket": "ar-pong-269613.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:953154876626:android:5da49802a0c3622bece90b",
+        "android_client_info": {
+          "package_name": "com.Panda29.ARPong"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "953154876626-arginjl4m8d42u5m0id9o7dmaqi0kucr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcOEjMl2JBrYYavLILDmMebo1EI8e1DX8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "953154876626-arginjl4m8d42u5m0id9o7dmaqi0kucr.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "953154876626-e60hntul2arhhs76hcp2vqtj0rioicjj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.Panda29.ARPong"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
