@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
@@ -8,7 +7,6 @@ public class PlaceBoard : MonoBehaviour
 {
     public GameObject cursor;
     public ARRaycastManager arRaycastManager;
-    public ARAnchorManager arAnchorManager;
     private List<ARRaycastHit> hits = new List<ARRaycastHit>();
 
     void Update()

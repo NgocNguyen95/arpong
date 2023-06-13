@@ -1122,7 +1122,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh42736
+  m_Name: pb_Mesh47920
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1286,7 +1286,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh42480
+  m_Name: pb_Mesh47968
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1504,7 +1504,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh42592
+  m_Name: pb_Mesh47762
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1745,7 +1745,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh42372
+  m_Name: pb_Mesh47424
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1950,6 +1950,7 @@ GameObject:
   - component: {fileID: 764822680}
   - component: {fileID: 764822682}
   - component: {fileID: 764822681}
+  - component: {fileID: 764822683}
   m_Layer: 0
   m_Name: XR Origin
   m_TagString: Untagged
@@ -2060,6 +2061,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AnchorPrefab: {fileID: 0}
+--- !u!114 &764822683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764822675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef229f0a2d1817747ae592276ac98533, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arCamera: {fileID: 1981511007}
+  resolveAnchorPassedTimeout: 10
 --- !u!1 &1001685282
 GameObject:
   m_ObjectHideFlags: 0
@@ -2402,7 +2417,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh42224
+  m_Name: pb_Mesh48024
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2566,7 +2581,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh42534
+  m_Name: pb_Mesh47482
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2890,7 +2905,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh42854
+  m_Name: pb_Mesh47510
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3761,7 +3776,7 @@ PrefabInstance:
       objectReference: {fileID: 649298602}
     - target: {fileID: 507530204, guid: 77fd2b93c1f918c4190b3a56cd74fbe8, type: 3}
       propertyPath: m_VersionIndex
-      value: 2291
+      value: 2300
       objectReference: {fileID: 0}
     - target: {fileID: 593961914, guid: 77fd2b93c1f918c4190b3a56cd74fbe8, type: 3}
       propertyPath: m_Mesh
@@ -3777,7 +3792,7 @@ PrefabInstance:
       objectReference: {fileID: 2127990733}
     - target: {fileID: 593961918, guid: 77fd2b93c1f918c4190b3a56cd74fbe8, type: 3}
       propertyPath: m_VersionIndex
-      value: 2285
+      value: 2294
       objectReference: {fileID: 0}
     - target: {fileID: 663282858, guid: 77fd2b93c1f918c4190b3a56cd74fbe8, type: 3}
       propertyPath: m_Mesh
@@ -3793,7 +3808,7 @@ PrefabInstance:
       objectReference: {fileID: 1516477729}
     - target: {fileID: 663282862, guid: 77fd2b93c1f918c4190b3a56cd74fbe8, type: 3}
       propertyPath: m_VersionIndex
-      value: 2282
+      value: 2291
       objectReference: {fileID: 0}
     - target: {fileID: 748099630, guid: 77fd2b93c1f918c4190b3a56cd74fbe8, type: 3}
       propertyPath: m_Mesh
@@ -3809,7 +3824,7 @@ PrefabInstance:
       objectReference: {fileID: 1627382293}
     - target: {fileID: 748099634, guid: 77fd2b93c1f918c4190b3a56cd74fbe8, type: 3}
       propertyPath: m_VersionIndex
-      value: 2288
+      value: 2297
       objectReference: {fileID: 0}
     - target: {fileID: 961672078, guid: 77fd2b93c1f918c4190b3a56cd74fbe8, type: 3}
       propertyPath: m_Mesh
@@ -3825,7 +3840,7 @@ PrefabInstance:
       objectReference: {fileID: 498911085}
     - target: {fileID: 961672082, guid: 77fd2b93c1f918c4190b3a56cd74fbe8, type: 3}
       propertyPath: m_VersionIndex
-      value: 2288
+      value: 2297
       objectReference: {fileID: 0}
     - target: {fileID: 1080149840, guid: 77fd2b93c1f918c4190b3a56cd74fbe8, type: 3}
       propertyPath: m_Mesh
@@ -3841,7 +3856,7 @@ PrefabInstance:
       objectReference: {fileID: 453232328}
     - target: {fileID: 1080149844, guid: 77fd2b93c1f918c4190b3a56cd74fbe8, type: 3}
       propertyPath: m_VersionIndex
-      value: 2285
+      value: 2294
       objectReference: {fileID: 0}
     - target: {fileID: 1447990721, guid: 77fd2b93c1f918c4190b3a56cd74fbe8, type: 3}
       propertyPath: m_Mesh
@@ -3857,7 +3872,7 @@ PrefabInstance:
       objectReference: {fileID: 397250330}
     - target: {fileID: 1447990725, guid: 77fd2b93c1f918c4190b3a56cd74fbe8, type: 3}
       propertyPath: m_VersionIndex
-      value: 2279
+      value: 2288
       objectReference: {fileID: 0}
     - target: {fileID: 1591999926, guid: 77fd2b93c1f918c4190b3a56cd74fbe8, type: 3}
       propertyPath: m_Mesh
@@ -3873,7 +3888,7 @@ PrefabInstance:
       objectReference: {fileID: 1365346946}
     - target: {fileID: 1591999930, guid: 77fd2b93c1f918c4190b3a56cd74fbe8, type: 3}
       propertyPath: m_VersionIndex
-      value: 2282
+      value: 2291
       objectReference: {fileID: 0}
     - target: {fileID: 1731639814452213902, guid: 77fd2b93c1f918c4190b3a56cd74fbe8,
         type: 3}
@@ -4002,14 +4017,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursor: {fileID: 2005780544}
   arRaycastManager: {fileID: 764822679}
-  arAnchorManager: {fileID: 764822682}
 --- !u!43 &2127990733
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh41972
+  m_Name: pb_Mesh47544
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

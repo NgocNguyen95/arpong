@@ -1,6 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.XR.ARFoundation;
 
 public class ARPongTable : MonoBehaviour
 {
@@ -26,8 +26,15 @@ public class ARPongTable : MonoBehaviour
 
     void AddEventListeners()
     {
-        EventManager.Instance.eventBoardPlaced.AddListener(InitPlayGround);
+        EventManager.Instance.eventBoardPlaced.AddListener(InitCloudAnchor);
         EventManager.Instance.eventGoal.AddListener(Goal);
+    }
+
+
+    void InitCloudAnchor()
+    {
+        var anchor = this.AddComponent<ARAnchor>();
+        ARCloudAnchorManager.Instance.QueueAnchor(anchor);
     }
 
 
