@@ -26,8 +26,8 @@ public class ARPongTable : MonoBehaviour
 
     void AddEventListeners()
     {
-        EventManager.Instance.eventBoardPlaced.AddListener(InitCloudAnchor);
-        EventManager.Instance.eventGoal.AddListener(Goal);
+        EventManager.Instance.boardPlacedEvent.AddListener(InitCloudAnchor);
+        EventManager.Instance.goalEvent.AddListener(Goal);
     }
 
 

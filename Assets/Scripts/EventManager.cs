@@ -1,11 +1,13 @@
+using UnityEngine;
 using UnityEngine.Events;
 
 public class EventManager
 {
     private static EventManager _instance;
 
-    public UnityEvent eventBoardPlaced = new EventBoardPlaced();
-    public UnityEvent<int> eventGoal = new EventGoal();
+    public BoardPlacedEvent boardPlacedEvent = new BoardPlacedEvent();
+    public CloudAnchorResolvedEvent cloudAnchorResolvedEvent = new CloudAnchorResolvedEvent();
+    public GoalEvent goalEvent = new GoalEvent();
 
     public static EventManager Instance
     {
@@ -18,6 +20,8 @@ public class EventManager
     }
 }
 
-public class EventBoardPlaced : UnityEvent { }
+public class BoardPlacedEvent : UnityEvent { }
 
-public class EventGoal : UnityEvent<int> { }
+public class CloudAnchorResolvedEvent : UnityEvent<Transform> { }
+
+public class GoalEvent : UnityEvent<int> { }

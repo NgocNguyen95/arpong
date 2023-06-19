@@ -10,7 +10,7 @@ public class Goal : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ball"))
         {
-            EventManager.Instance.eventGoal.Invoke(playerNumber);
+            EventManager.Instance.goalEvent.Invoke(playerNumber);
         }
     }
 }
