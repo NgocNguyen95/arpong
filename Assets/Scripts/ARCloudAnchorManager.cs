@@ -237,6 +237,7 @@ public class ARCloudAnchorManager : MonoBehaviour
         if (isSuccess)
         {
             Debug.Log($"[{nameof(ARCloudAnchorManager)}] {nameof(OnCloudAnchorHostedFinished)} Success, ID: {response}");
+            FirestoreManager.Instance.AddCloudAnchor(response);
         }
         else
         {
