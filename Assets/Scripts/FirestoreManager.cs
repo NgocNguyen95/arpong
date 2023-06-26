@@ -2,6 +2,7 @@ using Firebase;
 using Firebase.Extensions;
 using Firebase.Firestore;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class FirestoreManager : MonoBehaviour
@@ -9,7 +10,7 @@ public class FirestoreManager : MonoBehaviour
     private static FirestoreManager _instance;
 
     private FirebaseFirestore _db = null;
-
+    private List<CloudAnchor> _cloudAnchors;
 
     public static FirestoreManager Instance
     {
@@ -27,6 +28,7 @@ public class FirestoreManager : MonoBehaviour
     void Start()
     {
         InitCloudFirestore();
+        _cloudAnchors = new List<CloudAnchor>();
     }
 
 
@@ -64,6 +66,34 @@ public class FirestoreManager : MonoBehaviour
         {
             DocumentReference addedDocRef = task.Result;
             Debug.Log($"[{nameof(FirestoreManager)}] {nameof(AddCloudAnchor)} added document Id: {addedDocRef.Id}");
+        });
+    }
+
+
+    public void GetCloudAnchors(Action<List<CloudAnchor>> getCloudAnchorsAction)
+    {
+        if (_db == null)
+        {
+            Debug.Log($"[{nameof(FirestoreManager)}] {nameof(GetCloudAnchors)} Database is null");
+            return;
+        }
+
+        _cloudAnchors.Clear();
+
+        Query cloudAnchorQuery = _db.Collection("anchors");
+
+        cloudAnchorQuery.GetSnapshotAsync().ContinueWithOnMainThread(task =>
+        {
+            QuerySnapshot cloudAnchorQuerySnap = task.Result;
+
+            foreach(DocumentSnapshot docSnap in cloudAnchorQuerySnap.Documents)
+            {
+                CloudAnchor cloudAnchor = docSnap.ConvertTo<CloudAnchor>();
+                Debug.Log($"[{nameof(FirestoreManager)}] {nameof(GetCloudAnchors)} {cloudAnchor}");
+                _cloudAnchors.Add(cloudAnchor);
+            }
+
+            getCloudAnchorsAction(_cloudAnchors);
         });
     }
 }

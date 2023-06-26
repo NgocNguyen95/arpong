@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] TMP_InputField _cloudAnchorIdInputField;
 
+    [SerializeField] GameObject _roomScrollView;
+    [SerializeField] GameObject _roomCellPrefab;
+
 
     private void Awake()
     {
@@ -51,6 +54,34 @@ public class GameManager : MonoBehaviour
     {
         _placeBoard.enabled = true;
         _placeBoardButton.interactable = true;
+    }
+
+
+    public void OnClickEnterRoom(bool isOn)
+    {
+        if (!isOn)
+        {
+            int roomCellCount = _roomScrollView.GetComponent<ScrollRect>().content.childCount;
+
+            for (int i = 0; i < roomCellCount; i++)
+            {
+                Destroy(_roomScrollView.GetComponent<ScrollRect>().content.GetChild(i).gameObject);
+            }
+            _roomScrollView.SetActive(false);
+            return;
+        }
+
+        _roomScrollView.SetActive(true);
+        FirestoreManager.Instance.GetCloudAnchors((cloudAnchors) =>
+        {
+            int i = 0;
+            foreach (var cloudAnchor in cloudAnchors)
+            {
+                i++;
+                var roomCell = Instantiate(_roomCellPrefab, _roomScrollView.GetComponent<ScrollRect>().content);
+                roomCell.GetComponent<RoomCell>().Init("Room " + i, cloudAnchor.CloudAnchorId, cloudAnchor.CreateTime, cloudAnchor.ExpireTime);
+            }
+        });
     }
 
 
