@@ -4806,9 +4806,7 @@ MonoBehaviour:
   _placeBoard: {fileID: 2040939846}
   _createRoomButton: {fileID: 730983595}
   _enterRoomButton: {fileID: 1890254112}
-  _resolveCloudAnchorButton: {fileID: 0}
   _placeBoardButton: {fileID: 1639216202}
-  _cloudAnchorIdInputField: {fileID: 0}
   _roomScrollView: {fileID: 1353653057}
   _roomCellPrefab: {fileID: 1926247613187788604, guid: 8638084bfeab11248a901c466c2dfd92,
     type: 3}

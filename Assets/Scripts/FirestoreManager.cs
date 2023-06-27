@@ -59,8 +59,8 @@ public class FirestoreManager : MonoBehaviour
         CloudAnchor cloudAnchor = new CloudAnchor
         {
             CloudAnchorId = cloudAnchorId,
-            CreateTime = DateTime.Now,
-            ExpireTime = DateTime.Now.AddDays(1)
+            CreateTime = DateTime.UtcNow,
+            ExpireTime = DateTime.UtcNow.AddDays(1)
         };
         colRef.AddAsync(cloudAnchor).ContinueWithOnMainThread(task =>
         {

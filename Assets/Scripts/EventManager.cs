@@ -7,7 +7,9 @@ public class EventManager
 
     public BoardPlacedEvent boardPlacedEvent = new BoardPlacedEvent();
     public CloudAnchorResolvedEvent cloudAnchorResolvedEvent = new CloudAnchorResolvedEvent();
+    public JoinRoomEvent joinRoomEvent = new JoinRoomEvent();
     public GoalEvent goalEvent = new GoalEvent();
+
 
     public static EventManager Instance
     {
@@ -23,5 +25,7 @@ public class EventManager
 public class BoardPlacedEvent : UnityEvent { }
 
 public class CloudAnchorResolvedEvent : UnityEvent<Transform> { }
+
+public class JoinRoomEvent : UnityEvent { }
 
 public class GoalEvent : UnityEvent<int> { }

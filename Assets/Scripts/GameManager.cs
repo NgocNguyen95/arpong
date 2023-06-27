@@ -10,10 +10,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] Button _createRoomButton;
     [SerializeField] Toggle _enterRoomButton;
-    [SerializeField] Button _resolveCloudAnchorButton;
     [SerializeField] Button _placeBoardButton;
-
-    [SerializeField] TMP_InputField _cloudAnchorIdInputField;
 
     [SerializeField] GameObject _roomScrollView;
     [SerializeField] GameObject _roomCellPrefab;
@@ -34,12 +31,14 @@ public class GameManager : MonoBehaviour
     private void AddListeners()
     {
         EventManager.Instance.cloudAnchorResolvedEvent.AddListener(InitBoard);
+        EventManager.Instance.joinRoomEvent.AddListener(HandleJoinRoomEvent);
     }
 
 
     private void RemoveListeners()
     {
         EventManager.Instance.cloudAnchorResolvedEvent.RemoveListener(InitBoard);
+        EventManager.Instance.joinRoomEvent.RemoveListener(HandleJoinRoomEvent);
     }
 
 
@@ -94,15 +93,8 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public void OnClickResolveCloudAnchorButton()
+    public void HandleJoinRoomEvent()
     {
-        if (_cloudAnchorIdInputField.text == "")
-            return;
-
-        string cloudAnchorId = _cloudAnchorIdInputField.text;
-        ARCloudAnchorManager.Instance.QueueResolveAnchor(cloudAnchorId);
-
-        _cloudAnchorIdInputField.text = "";
         _enterRoomButton.isOn = false;
     }
 }
