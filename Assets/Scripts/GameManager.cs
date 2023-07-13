@@ -30,19 +30,17 @@ public class GameManager : MonoBehaviour
 
     private void AddListeners()
     {
-        EventManager.Instance.cloudAnchorResolvedEvent.AddListener(InitBoard);
         EventManager.Instance.joinRoomEvent.AddListener(HandleJoinRoomEvent);
     }
 
 
     private void RemoveListeners()
     {
-        EventManager.Instance.cloudAnchorResolvedEvent.RemoveListener(InitBoard);
         EventManager.Instance.joinRoomEvent.RemoveListener(HandleJoinRoomEvent);
     }
 
 
-    private void InitBoard(Transform cloudAnchorTransform)
+    public void InitBoard(Transform cloudAnchorTransform)
     {
         _arPongTable.SetActive(true);
         _arPongTable.transform.SetPositionAndRotation(cloudAnchorTransform.position, cloudAnchorTransform.rotation);
