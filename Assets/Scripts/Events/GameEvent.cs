@@ -5,11 +5,11 @@ public class GameEvent<T> : ScriptableObject
 {
     private List<GameEventListener<T>> listeners = new List<GameEventListener<T>>();
 
-    public void Raise(T agr)
+    public void Raise(T arg)
     {
         for (int i = listeners.Count - 1; i >= 0; i--)
         {
-            listeners[i].OnEventRaised(agr);
+            listeners[i].OnEventRaised(arg);
         }
     }
 
