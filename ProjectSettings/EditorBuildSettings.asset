@@ -9,6 +9,10 @@ EditorBuildSettings:
     path: Assets/Scenes/ARPong.unity
     guid: 231b973c15e67c746a214804d9c696ef
   m_configObjects:
+    AR Foundation RemoteARFoundationRemoteLoaderSettings: {fileID: 11400000, guid: 78d1ee95d9def4fd283cda1d14d6a6a1,
+      type: 2}
+    AR Foundation RemoteARFoundationRemoteSessionRecordsData: {fileID: 11400000, guid: c8c16843478ba459ab67ecd5f146df8c,
+      type: 2}
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 2535c8382d77f9844a06ac354a7c4517,
       type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: 11ca265e7a19af240a4cae0d868f3b19,

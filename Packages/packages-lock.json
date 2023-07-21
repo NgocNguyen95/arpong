@@ -7,17 +7,6 @@
       "dependencies": {},
       "hash": "4262886c09bb374db39944322999289f64110980"
     },
-    "com.google.ar.core.arfoundation.extensions-lite": {
-      "version": "file:ARCoreExtension/arcore-unity-extensions-1.37.0-without-edm4u.tgz",
-      "depth": 0,
-      "source": "local-tarball",
-      "dependencies": {
-        "com.google.external-dependency-manager": "^1.2.175",
-        "com.unity.xr.arfoundation": "4.1.5",
-        "com.unity.xr.arcore": "4.1.5",
-        "com.unity.xr.arkit": "4.1.5"
-      }
-    },
     "com.google.external-dependency-manager": {
       "version": "file:ARCoreExtension/com.google.external-dependency-manager-1.2.176.tgz",
       "depth": 0,
@@ -39,6 +28,32 @@
       "dependencies": {
         "com.google.firebase.app": "11.1.0"
       }
+    },
+    "com.kyrylokuzyk.arfoundationremote": {
+      "version": "file:../Assets/Plugins/ARFoundationRemoteInstaller/com.kyrylokuzyk.arfoundationremote.tgz",
+      "depth": 0,
+      "source": "local-tarball",
+      "dependencies": {
+        "com.unity.xr.arfoundation": "3.0.1",
+        "com.unity.xr.management": "3.0.4-preview.1",
+        "com.unity.modules.unitywebrequest": "1.0.0",
+        "com.unity.modules.imageconversion": "1.0.0",
+        "com.unity.ugui": "1.0.0",
+        "com.unity.modules.particlesystem": "1.0.0",
+        "com.unity.modules.vr": "1.0.0",
+        "com.unity.modules.imgui": "1.0.0"
+      }
+    },
+    "com.kyrylokuzyk.arfoundationremote.arcoreextensions": {
+      "version": "https://github.com/KirillKuzyk/arcore-unity-extensions.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.xr.arfoundation": "4.1.5",
+        "com.unity.xr.arcore": "4.1.5",
+        "com.unity.xr.arkit": "4.1.5"
+      },
+      "hash": "05f84b842da90df0e369f8627d40eb58706c70ef"
     },
     "com.unity.burst": {
       "version": "1.8.4",
