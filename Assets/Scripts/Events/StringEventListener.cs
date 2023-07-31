@@ -1,3 +1,3 @@
 using UnityEngine;
 
-public class StringEventListener : GameEventListener<string> { }
+public class StringEventListener : GameEventListener_old<string> { }

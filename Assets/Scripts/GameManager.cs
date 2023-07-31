@@ -1,6 +1,7 @@
-using TMPro;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.XR.ARFoundation;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject _roomScrollView;
     [SerializeField] GameObject _roomCellPrefab;
 
+    public ARSessionOrigin arOrigin;
 
     private void Awake()
     {
@@ -43,7 +45,7 @@ public class GameManager : MonoBehaviour
     public void InitBoard(Transform cloudAnchorTransform)
     {
         _arPongTable.SetActive(true);
-        _arPongTable.transform.SetPositionAndRotation(cloudAnchorTransform.position, cloudAnchorTransform.rotation);
+        arOrigin.MakeContentAppearAt(_arPongTable.transform, cloudAnchorTransform.position, cloudAnchorTransform.rotation);
     }
 
 
@@ -94,5 +96,28 @@ public class GameManager : MonoBehaviour
     public void HandleJoinRoomEvent()
     {
         _enterRoomButton.isOn = false;
+    }
+
+
+    public void MakeBoardAppearAtOrigin()
+    {
+        StartCoroutine(MakeBoardAppearAtOriginCoroutine());
+    }
+
+    private IEnumerator MakeBoardAppearAtOriginCoroutine()
+    {
+        var arAnchor = _arPongTable.GetComponent<ARAnchor>();
+
+        if (arAnchor != null)
+            Destroy(arAnchor);
+
+        yield return new WaitUntil(() => arAnchor == null);
+
+        var appearPosition = _arPongTable.transform.position;
+        var appearRotation = _arPongTable.transform.rotation;
+
+        _arPongTable.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
+
+        arOrigin.MakeContentAppearAt(_arPongTable.transform, appearPosition, appearRotation);
     }
 }

@@ -1,10 +1,10 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class GameEventListener<T> : MonoBehaviour
+public class GameEventListener : MonoBehaviour
 {
-    public GameEvent<T> Event;
-    public UnityEvent<T> Response;
+    public GameEvent Event;
+    public UnityEvent Response;
 
     private void OnEnable()
     {
@@ -13,11 +13,11 @@ public class GameEventListener<T> : MonoBehaviour
 
     private void OnDisable()
     {
-        Event.RemoveListener(this);        
+        Event.RemoveListener(this);
     }
 
-    public void OnEventRaised(T agr)
+    public void OnEventRaised()
     {
-        Response.Invoke(agr);
+        Response.Invoke();
     }
 }

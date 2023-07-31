@@ -7,39 +7,29 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:953154876626:android:5da49802a0c3622bece90b",
+        "mobilesdk_app_id": "1:953154876626:ios:2f315a12ecd561c7ece90b",
         "android_client_info": {
           "package_name": "com.Panda29.ARPong"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "953154876626-arginjl4m8d42u5m0id9o7dmaqi0kucr.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
       "api_key": [
         {
-          "current_key": "AIzaSyAcOEjMl2JBrYYavLILDmMebo1EI8e1DX8"
+          "current_key": "AIzaSyAGOwdDG4Po_LGAB30Zm2cIU4X-CDlXDKU"
         }
       ],
       "services": {
+        "analytics_service": {
+          "status": 0
+        },
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "953154876626-arginjl4m8d42u5m0id9o7dmaqi0kucr.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "953154876626-e60hntul2arhhs76hcp2vqtj0rioicjj.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.Panda29.ARPong"
-              }
-            }
-          ]
+          "status": 1
         }
-      }
+      },
+      "oauth_client": [
+        {
+          "client_id": "953154876626-e60hntul2arhhs76hcp2vqtj0rioicjj.apps.googleusercontent.com"
+        }
+      ]
     }
   ],
   "configuration_version": "1"

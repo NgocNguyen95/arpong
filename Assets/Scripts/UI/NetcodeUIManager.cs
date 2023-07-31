@@ -6,7 +6,7 @@ public class NetcodeUIManager : MonoBehaviour
 {
     [SerializeField] TMP_InputField joincodeInputField;
 
-    public GameEvent<string> JoincodeEvent;
+    public GameEvent_old<string> JoincodeEvent;
 
     public void StartHost()
     {

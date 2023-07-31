@@ -36,7 +36,7 @@ public class ARCloudAnchorManager : MonoBehaviour
     private FeatureMapQuality _previousFeatureMapQuality;
 
     public TransformEvent CloudAnchorResolvedEvent;
-
+    public GameEvent CloudAnchorHostEvent;
 
     public static ARCloudAnchorManager Instance
     {
@@ -177,6 +177,7 @@ public class ARCloudAnchorManager : MonoBehaviour
         if (_hostResult.CloudAnchorState == CloudAnchorState.Success)
         {
             OnCloudAnchorHostedFinished(true, _hostResult.CloudAnchorId);
+            CloudAnchorHostEvent.Raise();
         }
         else
         {
