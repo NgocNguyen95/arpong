@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd607c3f010ab45a29ecfcf8d5a898ef, type: 3}
   m_Name: Settings
   m_EditorClassIdentifier: 
-  ARCompanionAppIP: 192.168.0.195
+  ARCompanionAppIP: 192.168.0.184
   arCompanionSettings:
     cameraVideoSettings:
       enableVideo: 1
@@ -39,7 +39,7 @@ MonoBehaviour:
     maxEditorViewFps: 10
   packages:
   - displayName: AR Foundation Remote
-    version: 2.0.31-release.1
+    version: 2.0.31-release.3
     id: com.kyrylokuzyk.arfoundationremote
   - displayName: AR Foundation
     version: 4.2.8
@@ -63,7 +63,7 @@ MonoBehaviour:
     version: 12.1.11
     id: com.unity.render-pipelines.universal
   inputHandlingData:
-    isLegacyInputManagerEnabled: 0
+    isLegacyInputManagerEnabled: 1
     isNewInputSystemEnabled: 1
   debugSettings:
     logStartupErrors: 1
@@ -90,13 +90,13 @@ MonoBehaviour:
       e33: 0
     overrideProjectionMatrix: 0
     projectionMatrix:
-      e00: 3.2468593
+      e00: 2.888504
       e01: 0
-      e02: 0.00043906638
+      e02: 0.007936849
       e03: 0
       e10: 0
-      e11: 1.4985504
-      e12: 0.006687654
+      e11: 1.3331558
+      e12: -0.009468327
       e13: 0
       e20: 0
       e21: 0
