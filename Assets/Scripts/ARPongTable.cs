@@ -1,18 +1,29 @@
+using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 
 public class ARPongTable : MonoBehaviour
 {
+    [Header("Goals")]
     [SerializeField] GameObject player1Goal;
+    [SerializeField] GameObject player2Goal;
+    [SerializeField] GameObject player3Goal;
+    [SerializeField] GameObject player4Goal;
+
+    [Header("Othes")]
     [SerializeField] GameObject cylinder;
 
+    [Header("Prefabs")]
     [SerializeField] GameObject ballPrefab;
     [SerializeField] GameObject paddlePrefab;
 
 
     private GameObject _ball;
     private GameObject _player1Paddle;
+    private GameObject _player2Paddle;
+    private GameObject _player3Paddle;
+    private GameObject _player4Paddle;
 
     float _spawnRadius = 2f;
     float _paddleOffset = 0.5f;
@@ -21,6 +32,8 @@ public class ARPongTable : MonoBehaviour
     private void Start()
     {
         AddEventListeners();
+        NetworkManager.Singleton.OnClientConnectedCallback += OnClientConnectedCallback;
+        NetworkManager.Singleton.OnClientDisconnectCallback += OnClientDisconnectCallback;
     }
 
 
@@ -81,5 +94,16 @@ public class ARPongTable : MonoBehaviour
                 InitBall();
             }
         );
+    }
+
+
+    void OnClientConnectedCallback(ulong clientId)
+    {
+        Debug.Log($"[{nameof(ARPongTable)}] {nameof(OnClientConnectedCallback)} {clientId}");
+    }
+
+    void OnClientDisconnectCallback(ulong clientId)
+    {
+        Debug.Log($"[{nameof(ARPongTable)}] {nameof(OnClientDisconnectCallback)} {clientId}");
     }
 }
