@@ -14,7 +14,7 @@
       "dependencies": {}
     },
     "com.google.firebase.app": {
-      "version": "file:FireBase/com.google.firebase.app-11.1.0.tgz",
+      "version": "file:FireBase/com.google.firebase.app-11.3.0.tgz",
       "depth": 0,
       "source": "local-tarball",
       "dependencies": {
@@ -22,11 +22,11 @@
       }
     },
     "com.google.firebase.firestore": {
-      "version": "file:FireBase/com.google.firebase.firestore-11.1.0.tgz",
+      "version": "file:FireBase/com.google.firebase.firestore-11.3.0.tgz",
       "depth": 0,
       "source": "local-tarball",
       "dependencies": {
-        "com.google.firebase.app": "11.1.0"
+        "com.google.firebase.app": "11.3.0"
       }
     },
     "com.kyrylokuzyk.arfoundationremote": {
