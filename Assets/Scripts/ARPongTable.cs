@@ -100,10 +100,42 @@ public class ARPongTable : MonoBehaviour
     void OnClientConnectedCallback(ulong clientId)
     {
         Debug.Log($"[{nameof(ARPongTable)}] {nameof(OnClientConnectedCallback)} {clientId}");
+
+        if (!NetworkManager.Singleton.IsServer)
+            return;
+
+        if (clientId == 0)
+        {
+            Vector3 spawnPosition = player1Goal.transform.position + player1Goal.transform.TransformDirection(Vector3.up) * _paddleOffset;
+            Quaternion spawnRotation = Quaternion.LookRotation(player1Goal.transform.up);
+
+            _player1Paddle = Instantiate(paddlePrefab, spawnPosition, spawnRotation);
+            _player1Paddle.GetComponent<NetworkObject>().SpawnWithOwnership(clientId);
+        }
+        else if (clientId == 1)
+        {
+            Vector3 spawnPosition = player2Goal.transform.position + player2Goal.transform.TransformDirection(Vector3.up) * _paddleOffset;
+            Quaternion spawnRotation = Quaternion.LookRotation(player2Goal.transform.up);
+
+            _player2Paddle = Instantiate(paddlePrefab, spawnPosition, spawnRotation);
+            _player2Paddle.GetComponent <NetworkObject>().SpawnWithOwnership(clientId);
+        }
     }
 
     void OnClientDisconnectCallback(ulong clientId)
     {
         Debug.Log($"[{nameof(ARPongTable)}] {nameof(OnClientDisconnectCallback)} {clientId}");
+
+        if (!NetworkManager.Singleton.IsServer)
+            return;
+
+        if (clientId == 0)
+        {
+            _player1Paddle.GetComponent<NetworkObject>().Despawn();
+        }
+        else if (clientId == 1)
+        {
+            _player2Paddle.GetComponent<NetworkObject>().Despawn();
+        }
     }
 }

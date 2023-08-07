@@ -1,10 +1,11 @@
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.EnhancedTouch;
 using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 using TouchPhase = UnityEngine.InputSystem.TouchPhase;
 
-public class PaddleController : MonoBehaviour
+public class PaddleController : NetworkBehaviour
 {
     public float speed = 10f;
 
@@ -28,6 +29,8 @@ public class PaddleController : MonoBehaviour
 
     void Update()
     {
+        if (!IsOwner) return;
+
         if (Touch.activeTouches.Count == 0)
         {
             return;
@@ -37,7 +40,6 @@ public class PaddleController : MonoBehaviour
             return;
 
         touch = Touch.activeTouches[0];
-
         if (touch.phase == TouchPhase.Began)
         {
             Ray ray = Camera.main.ScreenPointToRay(touch.screenPosition);
@@ -48,8 +50,7 @@ public class PaddleController : MonoBehaviour
                 if (hit.collider.tag == goalTag)
                 {
                     var targetPoint = hit.point + hit.transform.TransformDirection(Vector3.up) * offset;
-                    targetPosition = targetPoint;
-                    _stopMove = false;
+                    Move(targetPoint);
                 }
             }
         }
@@ -98,5 +99,17 @@ public class PaddleController : MonoBehaviour
             return;
 
         _stopMove = true;
+    }
+
+    [ServerRpc]
+    private void MoveServerRPC(Vector3 targetPoint)
+    {
+        Move(targetPoint);
+    }
+
+    private void Move(Vector3 targetPoint)
+    {
+        targetPosition = targetPoint;
+        _stopMove = false;
     }
 }
