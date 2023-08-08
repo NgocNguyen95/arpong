@@ -1,3 +1,3 @@
 using UnityEngine;
 
-public class TransformEventListener : GameEventListener_old<Transform> { }
+public class TransformEventListener : OneArgumentGameEventListener<Transform> { }

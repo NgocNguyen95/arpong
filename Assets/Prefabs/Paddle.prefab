@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 252690103327749593}
   - component: {fileID: 252690103327749594}
   - component: {fileID: 3854788354104526956}
-  - component: {fileID: -5311282805176279062}
-  - component: {fileID: 3665655025833218070}
+  - component: {fileID: -2129332689261802459}
+  - component: {fileID: 450608759555315158}
   m_Layer: 6
   m_Name: Paddle
   m_TagString: Untagged
@@ -151,7 +151,7 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
---- !u!114 &-5311282805176279062
+--- !u!114 &-2129332689261802459
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -160,15 +160,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 252690103327749596}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 454789be47482d9479ecb8910ee4d093, type: 3}
+  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   SyncPositionX: 1
   SyncPositionY: 1
   SyncPositionZ: 1
-  SyncRotAngleX: 0
-  SyncRotAngleY: 0
-  SyncRotAngleZ: 0
+  SyncRotAngleX: 1
+  SyncRotAngleY: 1
+  SyncRotAngleZ: 1
   SyncScaleX: 0
   SyncScaleY: 0
   SyncScaleZ: 0
@@ -181,7 +181,7 @@ MonoBehaviour:
   InLocalSpace: 0
   Interpolate: 1
   SlerpPosition: 0
---- !u!114 &3665655025833218070
+--- !u!114 &450608759555315158
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

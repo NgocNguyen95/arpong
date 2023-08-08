@@ -29,12 +29,11 @@ public class PaddleController : NetworkBehaviour
 
     void Update()
     {
-        if (!IsOwner) return;
+        if (!IsOwner)
+            return;
 
         if (Touch.activeTouches.Count == 0)
-        {
             return;
-        }
 
         if (IsPointingOverUI())
             return;
@@ -50,7 +49,7 @@ public class PaddleController : NetworkBehaviour
                 if (hit.collider.tag == goalTag)
                 {
                     var targetPoint = hit.point + hit.transform.TransformDirection(Vector3.up) * offset;
-                    Move(targetPoint);
+                    MoveServerRPC(targetPoint);
                 }
             }
         }
@@ -67,23 +66,6 @@ public class PaddleController : NetworkBehaviour
 
         // Move the paddle to the new position
         rb.MovePosition(newPosition);
-    }
-
-
-    Vector3 HitTest()
-    {       
-        Ray ray = Camera.main.ScreenPointToRay(touch.screenPosition);
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
-        {
-            if (hit.collider.tag == goalTag)
-            {
-                var targetPoint = hit.point + hit.transform.TransformDirection(Vector3.up) * offset;
-                return targetPoint;
-            }
-        }
-        return Vector3.zero;        
     }
 
 

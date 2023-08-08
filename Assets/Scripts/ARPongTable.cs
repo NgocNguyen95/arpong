@@ -53,13 +53,16 @@ public class ARPongTable : MonoBehaviour
 
     void InitPlayGround()
     {
-        InitBall();
+        SpawnBall();
         InitPaddle();
     }
 
 
-    void InitBall()
+    public void SpawnBall()
     {
+        if (!NetworkManager.Singleton.IsServer)
+            return;
+
         // Generate a random position within the spawn radius
         Vector3 randomOffset = Random.insideUnitSphere * _spawnRadius;
         Vector3 spawnPosition = cylinder.transform.position + randomOffset;
@@ -73,6 +76,7 @@ public class ARPongTable : MonoBehaviour
 
         // Instantiate the ball at the spawn position
         _ball = Instantiate(ballPrefab, spawnPosition, Quaternion.identity);
+        _ball.GetComponent<NetworkObject>().Spawn();
     }
 
 
@@ -91,7 +95,7 @@ public class ARPongTable : MonoBehaviour
 
         Timer.StartCooldown(3f, 
             () => {
-                InitBall();
+                SpawnBall();
             }
         );
     }
@@ -118,7 +122,7 @@ public class ARPongTable : MonoBehaviour
             Quaternion spawnRotation = Quaternion.LookRotation(player2Goal.transform.up);
 
             _player2Paddle = Instantiate(paddlePrefab, spawnPosition, spawnRotation);
-            _player2Paddle.GetComponent <NetworkObject>().SpawnWithOwnership(clientId);
+            _player2Paddle.GetComponent<NetworkObject>().SpawnWithOwnership(clientId);
         }
     }
 

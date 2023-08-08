@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameEvent_old<T> : ScriptableObject
+public class OneArgumentGameEvent<T> : ScriptableObject
 {
-    private List<GameEventListener_old<T>> listeners = new List<GameEventListener_old<T>>();
+    private List<OneArgumentGameEventListener<T>> listeners = new List<OneArgumentGameEventListener<T>>();
 
     public void Raise(T arg)
     {
@@ -13,12 +13,12 @@ public class GameEvent_old<T> : ScriptableObject
         }
     }
 
-    public void AddListener(GameEventListener_old<T> listener)
+    public void AddListener(OneArgumentGameEventListener<T> listener)
     {
         listeners.Add(listener);
     }
 
-    public void RemoveListener(GameEventListener_old<T> listener)
+    public void RemoveListener(OneArgumentGameEventListener<T> listener)
     {
         listeners.Remove(listener);
     }
