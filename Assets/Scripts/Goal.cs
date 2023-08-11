@@ -1,16 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Goal : MonoBehaviour
 {
-    [SerializeField] int playerNumber;
+    [SerializeField] ulong relayClientId;
+    public UlongEvent GoalEvent;
+
+    public void SetRelayClientId(ulong clientId)
+    {
+        relayClientId = clientId;
+    }
 
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("Ball"))
         {
-            EventManager.Instance.goalEvent.Invoke(playerNumber);
+            GoalEvent.Raise(relayClientId);
         }
     }
 }

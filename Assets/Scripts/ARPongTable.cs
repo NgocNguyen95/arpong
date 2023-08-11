@@ -18,6 +18,9 @@ public class ARPongTable : MonoBehaviour
     [SerializeField] GameObject ballPrefab;
     [SerializeField] GameObject paddlePrefab;
 
+    [Header("Event")]
+    [SerializeField] UlongEvent goalEvent;
+
 
     private GameObject _ball;
     private GameObject _player1Paddle;
@@ -40,7 +43,6 @@ public class ARPongTable : MonoBehaviour
     void AddEventListeners()
     {
         EventManager.Instance.boardPlacedEvent.AddListener(InitCloudAnchor);
-        EventManager.Instance.goalEvent.AddListener(Goal);
     }
 
 
@@ -89,7 +91,7 @@ public class ARPongTable : MonoBehaviour
     }
 
 
-    void Goal(int playerNumber)
+    public void Goal(ulong playerNumber)
     {
         Destroy(_ball);
 
@@ -98,6 +100,22 @@ public class ARPongTable : MonoBehaviour
                 SpawnBall();
             }
         );
+    }
+
+    public void KnockOutPlayer(ulong clientId)
+    {
+        if (!NetworkManager.Singleton.IsServer) return;
+
+        if (clientId == 0)
+        {
+            _player1Paddle.GetComponent<NetworkObject>().Despawn();
+            Destroy(player1Goal.GetComponent<Goal>());
+        }
+        else if (clientId == 1)
+        {
+            _player2Paddle.GetComponent<NetworkObject>().Despawn();
+            Destroy(player2Goal.GetComponent<Goal>());
+        }
     }
 
 
@@ -115,6 +133,10 @@ public class ARPongTable : MonoBehaviour
 
             _player1Paddle = Instantiate(paddlePrefab, spawnPosition, spawnRotation);
             _player1Paddle.GetComponent<NetworkObject>().SpawnWithOwnership(clientId);
+
+            var goalComponent = player1Goal.AddComponent<Goal>();
+            goalComponent.SetRelayClientId(clientId);
+            goalComponent.GoalEvent = goalEvent;
         }
         else if (clientId == 1)
         {
@@ -123,6 +145,10 @@ public class ARPongTable : MonoBehaviour
 
             _player2Paddle = Instantiate(paddlePrefab, spawnPosition, spawnRotation);
             _player2Paddle.GetComponent<NetworkObject>().SpawnWithOwnership(clientId);
+
+            var goalComponent = player2Goal.AddComponent<Goal>();
+            goalComponent.SetRelayClientId(clientId);
+            goalComponent.GoalEvent = goalEvent;
         }
     }
 
@@ -135,11 +161,19 @@ public class ARPongTable : MonoBehaviour
 
         if (clientId == 0)
         {
-            _player1Paddle.GetComponent<NetworkObject>().Despawn();
+            if (_player1Paddle != null)
+                _player1Paddle.GetComponent<NetworkObject>().Despawn();
+
+            if (player1Goal.GetComponent<Goal>() != null)
+                Destroy(player1Goal.GetComponent<Goal>());
         }
         else if (clientId == 1)
         {
-            _player2Paddle.GetComponent<NetworkObject>().Despawn();
+            if (_player2Paddle != null)
+                _player2Paddle.GetComponent<NetworkObject>().Despawn();
+
+            if(player2Goal.GetComponent<Goal>() != null)
+                Destroy(player2Goal.GetComponent<Goal>());
         }
     }
 }

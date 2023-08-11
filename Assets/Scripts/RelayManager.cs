@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
@@ -87,7 +85,7 @@ public class RelayManager : MonoBehaviour
         }
         catch (Exception ex)
         {
-            Debug.Log("[" + nameof(RelayManager) + "] " + nameof(JoinRelayServerAsync) + " | Exception: " + ex);
+            Debug.LogError("[" + nameof(RelayManager) + "] " + nameof(JoinRelayServerAsync) + " | Exception: " + ex);
         }
 
         return new RelayServerData(joinAllocation, "dtls");

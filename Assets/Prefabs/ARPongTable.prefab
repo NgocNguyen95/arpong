@@ -3091,7 +3091,6 @@ GameObject:
   - component: {fileID: 1835570482}
   - component: {fileID: 1835570485}
   - component: {fileID: 1835570484}
-  - component: {fileID: 7355862888802980257}
   - component: {fileID: 4950795793182053586}
   m_Layer: 0
   m_Name: Player1Goal
@@ -3165,19 +3164,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &7355862888802980257
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1835570481}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b8fcd4cfb0be094ca545f8dda191f7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerNumber: 1
 --- !u!65 &4950795793182053586
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3299,6 +3285,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1731639814452213902}
   - component: {fileID: 2005780546}
+  - component: {fileID: 837157656349984981}
+  - component: {fileID: 135473729264712496}
   m_Layer: 0
   m_Name: ARPongTable
   m_TagString: Untagged
@@ -3361,6 +3349,63 @@ MonoBehaviour:
     type: 3}
   paddlePrefab: {fileID: 252690103327749596, guid: 86ad05c9801e815439303e6e69617b37,
     type: 3}
+  goalEvent: {fileID: 11400000, guid: 032121b635a9e8d4ea4876b81dcb0d9f, type: 2}
+--- !u!114 &837157656349984981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4393835813428784303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71af6b580d4fc9348864f6ad57d72a06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 032121b635a9e8d4ea4876b81dcb0d9f, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2005780546}
+        m_TargetAssemblyTypeName: ARPongTable, Assembly-CSharp
+        m_MethodName: Goal
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &135473729264712496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4393835813428784303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71af6b580d4fc9348864f6ad57d72a06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 9fabf528daa28ed43be4890e54332a04, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2005780546}
+        m_TargetAssemblyTypeName: ARPongTable, Assembly-CSharp
+        m_MethodName: KnockOutPlayer
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &9195622197534935139
 GameObject:
   m_ObjectHideFlags: 0
