@@ -32,6 +32,7 @@ public class ARPongTable : MonoBehaviour
     float _paddleOffset = 0.5f;
 
     bool _isGameOver;
+    private string _goalTag = "Goal";
 
 
     private void Start()
@@ -131,6 +132,24 @@ public class ARPongTable : MonoBehaviour
     void OnClientConnectedCallback(ulong clientId)
     {
         Debug.Log($"[{nameof(ARPongTable)}] {nameof(OnClientConnectedCallback)} {clientId}");
+
+        if (NetworkManager.Singleton.LocalClientId == clientId)
+        {
+            switch(clientId){
+                case 0:
+                    player1Goal.tag = _goalTag;
+                    break;
+                case 1:
+                    player2Goal.tag = _goalTag;
+                    break;
+                case 2:
+                    player3Goal.tag = _goalTag;
+                    break;
+                case 3:
+                    player4Goal.tag = _goalTag;
+                    break;
+            }
+        }
 
         if (!NetworkManager.Singleton.IsServer)
             return;

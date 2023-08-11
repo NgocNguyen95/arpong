@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8015160463497450685}
   m_Layer: 0
   m_Name: Player3Goal
-  m_TagString: Goal
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2499,7 +2499,7 @@ GameObject:
   - component: {fileID: 7125495546953355125}
   m_Layer: 0
   m_Name: Player2Goal
-  m_TagString: Goal
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2997,7 +2997,7 @@ GameObject:
   - component: {fileID: 4633983386384735904}
   m_Layer: 0
   m_Name: Player4Goal
-  m_TagString: Goal
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3094,7 +3094,7 @@ GameObject:
   - component: {fileID: 4950795793182053586}
   m_Layer: 0
   m_Name: Player1Goal
-  m_TagString: Goal
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

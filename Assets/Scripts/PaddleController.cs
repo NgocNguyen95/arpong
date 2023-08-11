@@ -9,22 +9,22 @@ public class PaddleController : NetworkBehaviour
 {
     public float speed = 10f;
 
-    private Rigidbody rb;
-    Touch touch;
-    Vector3 targetPosition;
-    private string goalTag = "Goal";
+    private Rigidbody _rb;
+    Touch _touch;
+    Vector3 _targetPosition;
+    private string _goalTag = "Goal";
 
-    private float offset = 0.5f;
+    private float _offset = 0.5f;
 
     bool _stopMove;
 
     void Start()
     {
         // Get the rigidbody component attached to the paddle
-        rb = GetComponent<Rigidbody>();
+        _rb = GetComponent<Rigidbody>();
         EnhancedTouchSupport.Enable();
 
-        targetPosition = rb.position;
+        _targetPosition = _rb.position;
     }
 
     void Update()
@@ -38,17 +38,17 @@ public class PaddleController : NetworkBehaviour
         if (IsPointingOverUI())
             return;
 
-        touch = Touch.activeTouches[0];
-        if (touch.phase == TouchPhase.Began)
+        _touch = Touch.activeTouches[0];
+        if (_touch.phase == TouchPhase.Began)
         {
-            Ray ray = Camera.main.ScreenPointToRay(touch.screenPosition);
+            Ray ray = Camera.main.ScreenPointToRay(_touch.screenPosition);
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
-                if (hit.collider.tag == goalTag)
+                if (hit.collider.tag == _goalTag)
                 {
-                    var targetPoint = hit.point + hit.transform.TransformDirection(Vector3.up) * offset;
+                    var targetPoint = hit.point + hit.transform.TransformDirection(Vector3.up) * _offset;
                     MoveServerRPC(targetPoint);
                 }
             }
@@ -62,10 +62,10 @@ public class PaddleController : NetworkBehaviour
             return;
 
         // Calculate the new position for the paddle based on the horizontal input
-        Vector3 newPosition = Vector3.MoveTowards(rb.position, targetPosition, speed * Time.fixedDeltaTime);
+        Vector3 newPosition = Vector3.MoveTowards(_rb.position, _targetPosition, speed * Time.fixedDeltaTime);
 
         // Move the paddle to the new position
-        rb.MovePosition(newPosition);
+        _rb.MovePosition(newPosition);
     }
 
 
@@ -91,7 +91,7 @@ public class PaddleController : NetworkBehaviour
 
     private void Move(Vector3 targetPoint)
     {
-        targetPosition = targetPoint;
+        _targetPosition = targetPoint;
         _stopMove = false;
     }
 }
