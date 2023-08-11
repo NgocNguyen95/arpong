@@ -3287,6 +3287,7 @@ GameObject:
   - component: {fileID: 2005780546}
   - component: {fileID: 837157656349984981}
   - component: {fileID: 135473729264712496}
+  - component: {fileID: 2218993030802356611}
   m_Layer: 0
   m_Name: ARPongTable
   m_TagString: Untagged
@@ -3398,6 +3399,34 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: ARPongTable, Assembly-CSharp
         m_MethodName: KnockOutPlayer
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2218993030802356611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4393835813428784303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a2a9ddab251843469a7ea870b805f26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 3cf632463740f49459c9d220ed257c93, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2005780546}
+        m_TargetAssemblyTypeName: ARPongTable, Assembly-CSharp
+        m_MethodName: GameOver
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

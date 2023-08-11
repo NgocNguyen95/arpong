@@ -31,6 +31,8 @@ public class ARPongTable : MonoBehaviour
     float _spawnRadius = 2f;
     float _paddleOffset = 0.5f;
 
+    bool _isGameOver;
+
 
     private void Start()
     {
@@ -63,6 +65,9 @@ public class ARPongTable : MonoBehaviour
     public void SpawnBall()
     {
         if (!NetworkManager.Singleton.IsServer)
+            return;
+
+        if (_isGameOver)
             return;
 
         // Generate a random position within the spawn radius
@@ -118,6 +123,10 @@ public class ARPongTable : MonoBehaviour
         }
     }
 
+    public void GameOver()
+    {
+        _isGameOver = true;
+    }
 
     void OnClientConnectedCallback(ulong clientId)
     {
@@ -125,6 +134,8 @@ public class ARPongTable : MonoBehaviour
 
         if (!NetworkManager.Singleton.IsServer)
             return;
+
+        _isGameOver = false;
 
         if (clientId == 0)
         {

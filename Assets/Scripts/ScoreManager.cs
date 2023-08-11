@@ -8,6 +8,7 @@ public class ScoreManager : MonoBehaviour
     private Dictionary<ulong, PlayerData> players;
 
     public UlongEvent knockedOutEvent;
+    public GameEvent gameOverEvent;
 
     // Start is called before the first frame update
     void Start()
@@ -65,6 +66,8 @@ public class ScoreManager : MonoBehaviour
     {
         if (players.Count > 1)
             return;
+
+        gameOverEvent.Raise();
 
         foreach(var key in players.Keys)
         {
