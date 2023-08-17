@@ -131,6 +131,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  playerJoin: {fileID: 11400000, guid: 80e35aa87ce5478459d29fbd473e4303, type: 2}
+  playerLeave: {fileID: 11400000, guid: 4e5770858cbdfc949a76c9fc8c6ee8b3, type: 2}
 --- !u!114 &3854788354104526956
 MonoBehaviour:
   m_ObjectHideFlags: 0

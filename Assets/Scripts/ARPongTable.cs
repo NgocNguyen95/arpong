@@ -5,11 +5,7 @@ using UnityEngine.XR.ARFoundation;
 
 public class ARPongTable : MonoBehaviour
 {
-    [Header("Goals")]
-    [SerializeField] GameObject player1Goal;
-    [SerializeField] GameObject player2Goal;
-    [SerializeField] GameObject player3Goal;
-    [SerializeField] GameObject player4Goal;
+    [SerializeField] GameObject[] _goals;
 
     [Header("Othes")]
     [SerializeField] GameObject cylinder;
@@ -18,15 +14,9 @@ public class ARPongTable : MonoBehaviour
     [SerializeField] GameObject ballPrefab;
     [SerializeField] GameObject paddlePrefab;
 
-    [Header("Event")]
-    [SerializeField] UlongEvent goalEvent;
-
 
     private GameObject _ball;
-    private GameObject _player1Paddle;
-    private GameObject _player2Paddle;
-    private GameObject _player3Paddle;
-    private GameObject _player4Paddle;
+    private GameObject[] _paddles = new GameObject[4];
 
     float _spawnRadius = 2f;
     float _paddleOffset = 0.5f;
@@ -59,7 +49,6 @@ public class ARPongTable : MonoBehaviour
     void InitPlayGround()
     {
         SpawnBall();
-        InitPaddle();
     }
 
 
@@ -87,17 +76,7 @@ public class ARPongTable : MonoBehaviour
         _ball.GetComponent<NetworkObject>().Spawn();
     }
 
-
-    void InitPaddle()
-    {
-        Vector3 spawnPosition = player1Goal.transform.position + player1Goal.transform.TransformDirection(Vector3.up) * _paddleOffset;
-        Quaternion spawnRotation = Quaternion.LookRotation(player1Goal.transform.up);
-
-        _player1Paddle = Instantiate(paddlePrefab, spawnPosition, spawnRotation);
-    }
-
-
-    public void Goal(ulong playerNumber)
+    public void CoolDownSpawnBall(ulong unused)
     {
         Destroy(_ball);
 
@@ -112,16 +91,7 @@ public class ARPongTable : MonoBehaviour
     {
         if (!NetworkManager.Singleton.IsServer) return;
 
-        if (clientId == 0)
-        {
-            _player1Paddle.GetComponent<NetworkObject>().Despawn();
-            Destroy(player1Goal.GetComponent<Goal>());
-        }
-        else if (clientId == 1)
-        {
-            _player2Paddle.GetComponent<NetworkObject>().Despawn();
-            Destroy(player2Goal.GetComponent<Goal>());
-        }
+        _paddles[clientId].GetComponent<NetworkObject>().Despawn();
     }
 
     public void GameOver()
@@ -135,20 +105,7 @@ public class ARPongTable : MonoBehaviour
 
         if (NetworkManager.Singleton.LocalClientId == clientId)
         {
-            switch(clientId){
-                case 0:
-                    player1Goal.tag = _goalTag;
-                    break;
-                case 1:
-                    player2Goal.tag = _goalTag;
-                    break;
-                case 2:
-                    player3Goal.tag = _goalTag;
-                    break;
-                case 3:
-                    player4Goal.tag = _goalTag;
-                    break;
-            }
+            _goals[clientId].tag = _goalTag;
         }
 
         if (!NetworkManager.Singleton.IsServer)
@@ -156,30 +113,11 @@ public class ARPongTable : MonoBehaviour
 
         _isGameOver = false;
 
-        if (clientId == 0)
-        {
-            Vector3 spawnPosition = player1Goal.transform.position + player1Goal.transform.TransformDirection(Vector3.up) * _paddleOffset;
-            Quaternion spawnRotation = Quaternion.LookRotation(player1Goal.transform.up);
+        Vector3 spawnPosition = _goals[clientId].transform.position + _goals[clientId].transform.TransformDirection(Vector3.up) * _paddleOffset;
+        Quaternion spawnRotation = Quaternion.LookRotation(_goals[clientId].transform.up);
 
-            _player1Paddle = Instantiate(paddlePrefab, spawnPosition, spawnRotation);
-            _player1Paddle.GetComponent<NetworkObject>().SpawnWithOwnership(clientId);
-
-            var goalComponent = player1Goal.AddComponent<Goal>();
-            goalComponent.SetRelayClientId(clientId);
-            goalComponent.GoalEvent = goalEvent;
-        }
-        else if (clientId == 1)
-        {
-            Vector3 spawnPosition = player2Goal.transform.position + player2Goal.transform.TransformDirection(Vector3.up) * _paddleOffset;
-            Quaternion spawnRotation = Quaternion.LookRotation(player2Goal.transform.up);
-
-            _player2Paddle = Instantiate(paddlePrefab, spawnPosition, spawnRotation);
-            _player2Paddle.GetComponent<NetworkObject>().SpawnWithOwnership(clientId);
-
-            var goalComponent = player2Goal.AddComponent<Goal>();
-            goalComponent.SetRelayClientId(clientId);
-            goalComponent.GoalEvent = goalEvent;
-        }
+        _paddles[clientId] = Instantiate(paddlePrefab, spawnPosition, spawnRotation);
+        _paddles[clientId].GetComponent<NetworkObject>().SpawnWithOwnership(clientId);
     }
 
     void OnClientDisconnectCallback(ulong clientId)
@@ -189,21 +127,7 @@ public class ARPongTable : MonoBehaviour
         if (!NetworkManager.Singleton.IsServer)
             return;
 
-        if (clientId == 0)
-        {
-            if (_player1Paddle != null)
-                _player1Paddle.GetComponent<NetworkObject>().Despawn();
-
-            if (player1Goal.GetComponent<Goal>() != null)
-                Destroy(player1Goal.GetComponent<Goal>());
-        }
-        else if (clientId == 1)
-        {
-            if (_player2Paddle != null)
-                _player2Paddle.GetComponent<NetworkObject>().Despawn();
-
-            if(player2Goal.GetComponent<Goal>() != null)
-                Destroy(player2Goal.GetComponent<Goal>());
-        }
+        if (_paddles[clientId] != null)
+            _paddles[clientId].GetComponent<NetworkObject>().Despawn();
     }
 }

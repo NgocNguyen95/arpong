@@ -7,7 +7,11 @@ using TouchPhase = UnityEngine.InputSystem.TouchPhase;
 
 public class PaddleController : NetworkBehaviour
 {
-    public float speed = 10f;
+    [SerializeField] float speed = 10f;
+
+    [Header("Events")]
+    [SerializeField] UlongEvent playerJoin;
+    [SerializeField] UlongEvent playerLeave;
 
     private Rigidbody _rb;
     Touch _touch;
@@ -93,5 +97,19 @@ public class PaddleController : NetworkBehaviour
     {
         _targetPosition = targetPoint;
         _stopMove = false;
+    }
+
+    public override void OnNetworkSpawn()
+    {
+        playerJoin.Raise(OwnerClientId);
+
+        base.OnNetworkSpawn();
+    }
+
+    public override void OnNetworkDespawn()
+    {
+        playerLeave.Raise(OwnerClientId);
+
+        base.OnNetworkDespawn();
     }
 }

@@ -1,20 +1,39 @@
+using Unity.Netcode;
 using UnityEngine;
 
-public class Goal : MonoBehaviour
+public class Goal : NetworkBehaviour
 {
     [SerializeField] ulong relayClientId;
-    public UlongEvent GoalEvent;
+    [SerializeField] UlongEvent GoalEvent;
 
-    public void SetRelayClientId(ulong clientId)
+    private bool _isOpen;
+
+    public void OpenGoal(ulong clientId)
     {
         relayClientId = clientId;
+        _isOpen = true;
+    }
+
+    public void CloseGoal()
+    {
+        relayClientId = ulong.MaxValue;
+        _isOpen = false;
     }
 
     private void OnCollisionEnter(Collision other)
     {
+        if (!_isOpen)
+            return;
+
         if (other.gameObject.CompareTag("Ball"))
         {
-            GoalEvent.Raise(relayClientId);
+            GoalClientRpc();
         }
+    }
+
+    [ClientRpc]
+    private void GoalClientRpc()
+    {
+        GoalEvent.Raise(relayClientId);
     }
 }
