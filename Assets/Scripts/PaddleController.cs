@@ -101,7 +101,7 @@ public class PaddleController : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
-        playerJoin.Raise(OwnerClientId);
+        //playerJoin.Raise(OwnerClientId);
 
         base.OnNetworkSpawn();
     }

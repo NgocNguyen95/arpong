@@ -5,73 +5,34 @@ using UnityEngine;
 
 public class ScoreManager : NetworkBehaviour
 {
-    public UlongEvent knockedOutEvent;
-    public GameEvent gameOverEvent;
-
     [SerializeField] GameObject[] _scores;
     [SerializeField] GameObject[] _goals;
 
-    private Dictionary<ulong, PlayerData> players;
-
-    // Start is called before the first frame update
-    void Start()
+    public void AddNewPlayer(ulong playerIndex)
     {
-        players = new Dictionary<ulong, PlayerData>();
-    }
-
-    public void AddNewPlayer(ulong clientId)
-    {
-        if (!players.ContainsKey(clientId))
+        for (int i = (int)playerIndex; i >= 0; i--)
         {
-            var newPlayerData = ScriptableObject.CreateInstance<PlayerData>();
-            newPlayerData.relayClientId = clientId;
-            newPlayerData.score = 3;
-            players.Add(clientId, newPlayerData);
-            _scores[players.Count - 1].GetComponent<Score>().InitScore(clientId);
-            _goals[players.Count - 1].GetComponent<Goal>().OpenGoal(clientId);
+            _scores[i].GetComponent<Score>().InitScore();
+            _goals[i].GetComponent<Goal>().OpenGoal();
         }
     }
 
     public void RemovePlayer(ulong clientId)
     {
-        if (players.ContainsKey(clientId))
-        {
-            Destroy(players[clientId]);
-            players.Remove(clientId);
-            _scores[players.Count].GetComponent<Score>().ResetScore();
-            _goals[players.Count].GetComponent<Goal>().CloseGoal();
-        }
+        int playerIndex = ARPongTable.Instance.GetPlayerIndexByClientId(clientId);
+
+        if (playerIndex == -1)
+            return;
+
+        _scores[playerIndex].GetComponent<Score>().ResetScore();
+        _goals[playerIndex].GetComponent<Goal>().CloseGoal();
     }
 
     [ClientRpc]
-    public void UpdateScoresClientRpc(ulong clientId)
+    public void UpdateScoresClientRpc(ulong goalIndex)
     {
-        if (!players.ContainsKey(clientId))
-            return;
+        Debug.Log($"[{nameof(ScoreManager)}] {nameof(UpdateScoresClientRpc)} goal {goalIndex}");
 
-        players[clientId].score--;
-        Debug.Log($"[{nameof(ScoreManager)}] {nameof(UpdateScoresClientRpc)} player {clientId} score: {players[clientId].score}");
-
-        if (players[clientId].score > 0)
-            return;
-
-        Debug.Log($"[{nameof(ScoreManager)}] {nameof(UpdateScoresClientRpc)} player {clientId} knocked out");
-        knockedOutEvent.Raise(clientId);
-        RemovePlayer(clientId);
-
-        CheckWinner();
-    }
-
-    void CheckWinner()
-    {
-        if (players.Count > 1)
-            return;
-
-        gameOverEvent.Raise();
-
-        foreach(var key in players.Keys)
-        {
-            Debug.Log($"[{nameof(ScoreManager)}] {nameof(CheckWinner)} | player {key} win");
-        }
+        _scores[goalIndex].GetComponent<Score>().ChangeScore();
     }
 }

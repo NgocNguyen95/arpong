@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b8fcd4cfb0be094ca545f8dda191f7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  relayClientId: 0
+  goalIndex: 1
   GoalEvent: {fileID: 11400000, guid: 032121b635a9e8d4ea4876b81dcb0d9f, type: 2}
 --- !u!1 &507530198
 GameObject:
@@ -2610,7 +2610,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b8fcd4cfb0be094ca545f8dda191f7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  relayClientId: 0
+  goalIndex: 3
   GoalEvent: {fileID: 11400000, guid: 032121b635a9e8d4ea4876b81dcb0d9f, type: 2}
 --- !u!1 &1591999924
 GameObject:
@@ -3123,7 +3123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b8fcd4cfb0be094ca545f8dda191f7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  relayClientId: 0
+  goalIndex: 2
   GoalEvent: {fileID: 11400000, guid: 032121b635a9e8d4ea4876b81dcb0d9f, type: 2}
 --- !u!1 &1835570481
 GameObject:
@@ -3235,7 +3235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b8fcd4cfb0be094ca545f8dda191f7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  relayClientId: 0
+  goalIndex: 0
   GoalEvent: {fileID: 11400000, guid: 032121b635a9e8d4ea4876b81dcb0d9f, type: 2}
 --- !u!1 &1252624229524603911
 GameObject:
@@ -3247,7 +3247,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4520136110100423758}
   - component: {fileID: 3632022856280525114}
-  - component: {fileID: 8214628341429952301}
   m_Layer: 0
   m_Name: ScorePlayer4
   m_TagString: Untagged
@@ -3285,40 +3284,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf3f41d8b962c194e8b9236c5d89e113, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _clientId: 0
+  scoreIndex: 3
   _score: 0
   _stars:
   - {fileID: 7842226255594782094}
   - {fileID: 4118315279557477077}
   - {fileID: 5222082501678946824}
---- !u!114 &8214628341429952301
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1252624229524603911}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71af6b580d4fc9348864f6ad57d72a06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 032121b635a9e8d4ea4876b81dcb0d9f, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3632022856280525114}
-        m_TargetAssemblyTypeName: Score, Assembly-CSharp
-        m_MethodName: ChangeScore
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &4266229589819370589
 GameObject:
   m_ObjectHideFlags: 0
@@ -3428,8 +3399,6 @@ GameObject:
   - component: {fileID: 1731639814452213902}
   - component: {fileID: 2005780546}
   - component: {fileID: 837157656349984981}
-  - component: {fileID: 135473729264712496}
-  - component: {fileID: 2218993030802356611}
   - component: {fileID: 1616503151758321303}
   m_Layer: 0
   m_Name: ARPongTable
@@ -3498,6 +3467,7 @@ MonoBehaviour:
     type: 3}
   paddlePrefab: {fileID: 252690103327749596, guid: 86ad05c9801e815439303e6e69617b37,
     type: 3}
+  playerJoin: {fileID: 11400000, guid: 80e35aa87ce5478459d29fbd473e4303, type: 2}
 --- !u!114 &837157656349984981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3516,64 +3486,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2005780546}
         m_TargetAssemblyTypeName: ARPongTable, Assembly-CSharp
-        m_MethodName: CoolDownSpawnBall
+        m_MethodName: OnGoalEvent
         m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &135473729264712496
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4393835813428784303}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71af6b580d4fc9348864f6ad57d72a06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 9fabf528daa28ed43be4890e54332a04, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2005780546}
-        m_TargetAssemblyTypeName: ARPongTable, Assembly-CSharp
-        m_MethodName: KnockOutPlayer
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &2218993030802356611
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4393835813428784303}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a2a9ddab251843469a7ea870b805f26, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 3cf632463740f49459c9d220ed257c93, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2005780546}
-        m_TargetAssemblyTypeName: ARPongTable, Assembly-CSharp
-        m_MethodName: GameOver
-        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3612,7 +3526,6 @@ GameObject:
   m_Component:
   - component: {fileID: 906048528216757710}
   - component: {fileID: 2591191662002762478}
-  - component: {fileID: 1622447238872603047}
   m_Layer: 0
   m_Name: ScorePlayer1
   m_TagString: Untagged
@@ -3650,40 +3563,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf3f41d8b962c194e8b9236c5d89e113, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _clientId: 0
+  scoreIndex: 0
   _score: 0
   _stars:
   - {fileID: 7460836422541457564}
   - {fileID: 4658394643067243200}
   - {fileID: 8497303378329195053}
---- !u!114 &1622447238872603047
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4696993576108666038}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71af6b580d4fc9348864f6ad57d72a06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 032121b635a9e8d4ea4876b81dcb0d9f, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2591191662002762478}
-        m_TargetAssemblyTypeName: Score, Assembly-CSharp
-        m_MethodName: ChangeScore
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &5785704143269338539
 GameObject:
   m_ObjectHideFlags: 0
@@ -3694,7 +3579,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4776473362596357310}
   - component: {fileID: 1805826495710410806}
-  - component: {fileID: 2513450591653730875}
   m_Layer: 0
   m_Name: ScorePlayer3
   m_TagString: Untagged
@@ -3732,40 +3616,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf3f41d8b962c194e8b9236c5d89e113, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _clientId: 0
+  scoreIndex: 2
   _score: 0
   _stars:
   - {fileID: 1850045467431905433}
   - {fileID: 4910248272627275359}
   - {fileID: 5424848845847217833}
---- !u!114 &2513450591653730875
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5785704143269338539}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71af6b580d4fc9348864f6ad57d72a06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 032121b635a9e8d4ea4876b81dcb0d9f, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1805826495710410806}
-        m_TargetAssemblyTypeName: Score, Assembly-CSharp
-        m_MethodName: ChangeScore
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &8001987838180204044
 GameObject:
   m_ObjectHideFlags: 0
@@ -3776,7 +3632,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8308226866539437911}
   - component: {fileID: 8505176835803563625}
-  - component: {fileID: 6711357510569595116}
   m_Layer: 0
   m_Name: ScorePlayer2
   m_TagString: Untagged
@@ -3814,40 +3669,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf3f41d8b962c194e8b9236c5d89e113, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _clientId: 0
+  scoreIndex: 1
   _score: 0
   _stars:
   - {fileID: 4312206403006137101}
   - {fileID: 6764386829566183934}
   - {fileID: 6503100000580146958}
---- !u!114 &6711357510569595116
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8001987838180204044}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71af6b580d4fc9348864f6ad57d72a06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 032121b635a9e8d4ea4876b81dcb0d9f, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8505176835803563625}
-        m_TargetAssemblyTypeName: Score, Assembly-CSharp
-        m_MethodName: ChangeScore
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &9195622197534935139
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,14 +3,18 @@ using UnityEngine;
 
 public class Score : MonoBehaviour
 {
-    [SerializeField] ulong _clientId;
+    [SerializeField] ulong scoreIndex;
     [SerializeField] int _score;
 
     [SerializeField] GameObject[] _stars;
 
-    public void InitScore(ulong clientId)
+    private void Start()
     {
-        _clientId = clientId;
+        _score = 0;
+    }
+
+    public void InitScore()
+    {
         _score = _stars.Length;
 
         foreach (var star in _stars)
@@ -21,7 +25,6 @@ public class Score : MonoBehaviour
 
     public void ResetScore()
     {
-        _clientId = ulong.MaxValue;
         _score = 0;
 
         foreach (var star in _stars)
@@ -30,15 +33,14 @@ public class Score : MonoBehaviour
         }
     }
 
-    public void ChangeScore(ulong clientId)
+    public void ChangeScore()
     {
-        if (clientId != _clientId)
-            return;
-
-        if (_score == 0)
-            return;
-
         _stars[_score - 1].SetActive(false);
         _score--;
+
+        if (_score > 0)
+            return;
+
+        ResetScore();
     }
 }

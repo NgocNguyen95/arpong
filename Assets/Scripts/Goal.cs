@@ -3,20 +3,23 @@ using UnityEngine;
 
 public class Goal : NetworkBehaviour
 {
-    [SerializeField] ulong relayClientId;
+    [SerializeField] ulong goalIndex;
     [SerializeField] UlongEvent GoalEvent;
 
     private bool _isOpen;
 
-    public void OpenGoal(ulong clientId)
+    private void Start()
     {
-        relayClientId = clientId;
+        _isOpen = false;
+    }
+
+    public void OpenGoal()
+    {
         _isOpen = true;
     }
 
     public void CloseGoal()
     {
-        relayClientId = ulong.MaxValue;
         _isOpen = false;
     }
 
@@ -34,6 +37,6 @@ public class Goal : NetworkBehaviour
     [ClientRpc]
     private void GoalClientRpc()
     {
-        GoalEvent.Raise(relayClientId);
+        GoalEvent.Raise(goalIndex);
     }
 }

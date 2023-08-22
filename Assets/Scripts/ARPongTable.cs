@@ -3,8 +3,10 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 
-public class ARPongTable : MonoBehaviour
+public class ARPongTable : NetworkBehaviour
 {
+    public static ARPongTable Instance;
+
     [SerializeField] GameObject[] _goals;
 
     [Header("Othes")]
@@ -14,16 +16,29 @@ public class ARPongTable : MonoBehaviour
     [SerializeField] GameObject ballPrefab;
     [SerializeField] GameObject paddlePrefab;
 
+    [Header("Events")]
+    [SerializeField] UlongEvent playerJoin;
+
 
     private GameObject _ball;
     private GameObject[] _paddles = new GameObject[4];
 
     float _spawnRadius = 2f;
     float _paddleOffset = 0.5f;
+    const int _maxPlayers = 4;
+    int _knockedOutPlayers = 0;
 
     bool _isGameOver;
     private string _goalTag = "Goal";
+    private NetworkList<PlayerData> _playerDataNetworkList;
 
+
+    private void Awake()
+    {
+        Instance = this;
+        _playerDataNetworkList = new NetworkList<PlayerData>();
+        _playerDataNetworkList.OnListChanged += OnPlayerDataNetworkListChanged;
+    }
 
     private void Start()
     {
@@ -76,7 +91,7 @@ public class ARPongTable : MonoBehaviour
         _ball.GetComponent<NetworkObject>().Spawn();
     }
 
-    public void CoolDownSpawnBall(ulong unused)
+    void CoolDownSpawnBall()
     {
         Destroy(_ball);
 
@@ -87,14 +102,16 @@ public class ARPongTable : MonoBehaviour
         );
     }
 
-    public void KnockOutPlayer(ulong clientId)
+    void KnockOutPlayer(int playerIndex)
     {
+        Debug.Log($"[{nameof(ARPongTable)}] {nameof(KnockOutPlayer)} {playerIndex}");
         if (!NetworkManager.Singleton.IsServer) return;
 
-        _paddles[clientId].GetComponent<NetworkObject>().Despawn();
+        if (playerIndex != -1 && _paddles[playerIndex] != null)
+            _paddles[playerIndex].GetComponent<NetworkObject>().Despawn();
     }
 
-    public void GameOver()
+    void GameOver()
     {
         _isGameOver = true;
     }
@@ -103,21 +120,24 @@ public class ARPongTable : MonoBehaviour
     {
         Debug.Log($"[{nameof(ARPongTable)}] {nameof(OnClientConnectedCallback)} {clientId}");
 
-        if (NetworkManager.Singleton.LocalClientId == clientId)
-        {
-            _goals[clientId].tag = _goalTag;
-        }
-
         if (!NetworkManager.Singleton.IsServer)
             return;
 
         _isGameOver = false;
 
-        Vector3 spawnPosition = _goals[clientId].transform.position + _goals[clientId].transform.TransformDirection(Vector3.up) * _paddleOffset;
-        Quaternion spawnRotation = Quaternion.LookRotation(_goals[clientId].transform.up);
+        _playerDataNetworkList.Add(new PlayerData
+        {
+            relayClientId = clientId,
+            score = 3
+        });
 
-        _paddles[clientId] = Instantiate(paddlePrefab, spawnPosition, spawnRotation);
-        _paddles[clientId].GetComponent<NetworkObject>().SpawnWithOwnership(clientId);
+        int slotIndex = _playerDataNetworkList.Count - 1;
+
+        Vector3 spawnPosition = _goals[slotIndex].transform.position + _goals[slotIndex].transform.TransformDirection(Vector3.up) * _paddleOffset;
+        Quaternion spawnRotation = Quaternion.LookRotation(_goals[slotIndex].transform.up);
+
+        _paddles[slotIndex] = Instantiate(paddlePrefab, spawnPosition, spawnRotation);
+        _paddles[slotIndex].GetComponent<NetworkObject>().SpawnWithOwnership(clientId);
     }
 
     void OnClientDisconnectCallback(ulong clientId)
@@ -127,7 +147,81 @@ public class ARPongTable : MonoBehaviour
         if (!NetworkManager.Singleton.IsServer)
             return;
 
-        if (_paddles[clientId] != null)
-            _paddles[clientId].GetComponent<NetworkObject>().Despawn();
+        int playerIndex = GetPlayerIndexByClientId(clientId);
+
+        if (playerIndex != -1 && _paddles[playerIndex] != null)
+            _paddles[playerIndex].GetComponent<NetworkObject>().Despawn();
+    }
+
+    public int GetPlayerIndexByClientId(ulong clientId)
+    {
+        for (int i = 0; i < _playerDataNetworkList.Count; i++)
+        {
+            if (_playerDataNetworkList[i].relayClientId == clientId)
+                return i;
+        }
+
+        return -1;
+    }
+
+    void OnPlayerDataNetworkListChanged(NetworkListEvent<PlayerData> networkListEvent)
+    {
+        var eventType = networkListEvent.Type;
+
+        switch (eventType)
+        {
+            case NetworkListEvent<PlayerData>.EventType.Add:
+                if (NetworkManager.Singleton.LocalClientId == networkListEvent.Value.relayClientId)
+                {
+                    _goals[networkListEvent.Index].tag = _goalTag;
+                }
+
+                playerJoin.Raise((ulong)networkListEvent.Index);
+                break;
+            case NetworkListEvent<PlayerData>.EventType.Value:
+                if (!_isGameOver)
+                    return;
+
+                for (int i = 0; i < _playerDataNetworkList.Count; i++)
+                {
+                    if (_playerDataNetworkList[i].score > 0)
+                    {
+                        Debug.Log($"[{nameof(ARPongTable)}] winner: {i}");
+                        return;
+                    }
+                }
+                break;
+        }
+    }
+
+    public void OnGoalEvent(ulong goalIndex)
+    {
+        UpdateScore((int)goalIndex);
+
+        CoolDownSpawnBall();
+    }
+
+    void UpdateScore(int goalIndex)
+    {
+        var playerData = _playerDataNetworkList[goalIndex];
+        playerData.score--;
+
+        if (NetworkManager.Singleton.IsServer)
+            _playerDataNetworkList[goalIndex] = playerData;
+
+        if (playerData.score > 0)
+            return;
+
+        KnockOutPlayer(goalIndex);
+        _knockedOutPlayers++;
+        CheckWinner();
+    }
+
+    void CheckWinner()
+    {
+        if (_knockedOutPlayers < _playerDataNetworkList.Count - 1)
+            return;
+
+        GameOver();
     }
 }
