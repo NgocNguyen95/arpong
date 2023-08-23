@@ -126,7 +126,7 @@ public class ARPongTable : NetworkBehaviour
         {
             if (_playerDataNetworkList[i].score > 0)
             {
-                Debug.Log($"[{nameof(ARPongTable)}] winner: {i}");
+                Debug.Log($"[{nameof(ARPongTable)}] {nameof(GameOver)} | winner: {i}");
                 return;
             }
         }
@@ -166,8 +166,18 @@ public class ARPongTable : NetworkBehaviour
 
         int playerIndex = GetPlayerIndexByClientId(clientId);
 
-        if (playerIndex != -1 && _paddles[playerIndex] != null)
-            _paddles[playerIndex].GetComponent<NetworkObject>().Despawn();
+        if (playerIndex == -1 || _paddles[playerIndex] == null)
+            return;
+
+        _paddles[playerIndex].GetComponent<NetworkObject>().Despawn();
+        _paddles[playerIndex] = null;
+
+        if (_isGameOver)
+            return;
+
+        var playerData = _playerDataNetworkList[playerIndex];
+        playerData.score = 0;
+        _playerDataNetworkList[playerIndex] = playerData;
     }
 
     public int GetPlayerIndexByClientId(ulong clientId)
