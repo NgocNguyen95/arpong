@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -21,7 +22,7 @@ public class ARPongTable : NetworkBehaviour
 
 
     private GameObject _ball;
-    private GameObject[] _paddles = new GameObject[4];
+    private Dictionary<int, GameObject> _paddles;
 
     float _spawnRadius = 2f;
     float _paddleOffset = 0.5f;
@@ -42,6 +43,7 @@ public class ARPongTable : NetworkBehaviour
 
     private void Start()
     {
+        _paddles = new Dictionary<int, GameObject>();
         AddEventListeners();
         NetworkManager.Singleton.OnClientConnectedCallback += OnClientConnectedCallback;
         NetworkManager.Singleton.OnClientDisconnectCallback += OnClientDisconnectCallback;
@@ -105,25 +107,38 @@ public class ARPongTable : NetworkBehaviour
     void KnockOutPlayer(int playerIndex)
     {
         Debug.Log($"[{nameof(ARPongTable)}] {nameof(KnockOutPlayer)} {playerIndex}");
+        _knockedOutPlayers++;
+        CheckWinner();
         if (!NetworkManager.Singleton.IsServer) return;
 
-        if (playerIndex != -1 && _paddles[playerIndex] != null)
+        if (_paddles[playerIndex] != null)
+        {
             _paddles[playerIndex].GetComponent<NetworkObject>().Despawn();
+            _paddles[playerIndex] = null;
+        }
     }
 
     void GameOver()
     {
         _isGameOver = true;
+
+        for (int i = 0; i < _playerDataNetworkList.Count; i++)
+        {
+            if (_playerDataNetworkList[i].score > 0)
+            {
+                Debug.Log($"[{nameof(ARPongTable)}] winner: {i}");
+                return;
+            }
+        }
     }
 
     void OnClientConnectedCallback(ulong clientId)
     {
         Debug.Log($"[{nameof(ARPongTable)}] {nameof(OnClientConnectedCallback)} {clientId}");
+        _isGameOver = false;
 
         if (!NetworkManager.Singleton.IsServer)
             return;
-
-        _isGameOver = false;
 
         _playerDataNetworkList.Add(new PlayerData
         {
@@ -136,8 +151,10 @@ public class ARPongTable : NetworkBehaviour
         Vector3 spawnPosition = _goals[slotIndex].transform.position + _goals[slotIndex].transform.TransformDirection(Vector3.up) * _paddleOffset;
         Quaternion spawnRotation = Quaternion.LookRotation(_goals[slotIndex].transform.up);
 
-        _paddles[slotIndex] = Instantiate(paddlePrefab, spawnPosition, spawnRotation);
-        _paddles[slotIndex].GetComponent<NetworkObject>().SpawnWithOwnership(clientId);
+        var paddle = Instantiate(paddlePrefab, spawnPosition, spawnRotation);
+        paddle.GetComponent<NetworkObject>().SpawnWithOwnership(clientId);
+
+        _paddles.Add(slotIndex, paddle);
     }
 
     void OnClientDisconnectCallback(ulong clientId)
@@ -179,42 +196,28 @@ public class ARPongTable : NetworkBehaviour
                 playerJoin.Raise((ulong)networkListEvent.Index);
                 break;
             case NetworkListEvent<PlayerData>.EventType.Value:
-                if (!_isGameOver)
+                if (networkListEvent.Value.score > 0)
                     return;
 
-                for (int i = 0; i < _playerDataNetworkList.Count; i++)
-                {
-                    if (_playerDataNetworkList[i].score > 0)
-                    {
-                        Debug.Log($"[{nameof(ARPongTable)}] winner: {i}");
-                        return;
-                    }
-                }
+                KnockOutPlayer(networkListEvent.Index);                
                 break;
         }
     }
 
     public void OnGoalEvent(ulong goalIndex)
     {
-        UpdateScore((int)goalIndex);
-
         CoolDownSpawnBall();
+        UpdateScore((int)goalIndex);
     }
 
     void UpdateScore(int goalIndex)
     {
-        var playerData = _playerDataNetworkList[goalIndex];
-        playerData.score--;
-
-        if (NetworkManager.Singleton.IsServer)
-            _playerDataNetworkList[goalIndex] = playerData;
-
-        if (playerData.score > 0)
+        if (!NetworkManager.Singleton.IsServer)
             return;
 
-        KnockOutPlayer(goalIndex);
-        _knockedOutPlayers++;
-        CheckWinner();
+        var playerData = _playerDataNetworkList[goalIndex];
+        playerData.score--;
+        _playerDataNetworkList[goalIndex] = playerData;
     }
 
     void CheckWinner()

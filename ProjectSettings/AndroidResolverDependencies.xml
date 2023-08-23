@@ -2,10 +2,10 @@
   <packages>
     <package>com.google.android.gms:play-services-base:18.2.0</package>
     <package>com.google.firebase:firebase-analytics:21.3.0</package>
-    <package>com.google.firebase:firebase-app-unity:11.1.0</package>
-    <package>com.google.firebase:firebase-common:20.3.2</package>
-    <package>com.google.firebase:firebase-firestore:24.6.1</package>
-    <package>com.google.firebase:firebase-firestore-unity:11.1.0</package>
+    <package>com.google.firebase:firebase-app-unity:11.3.0</package>
+    <package>com.google.firebase:firebase-common:20.3.3</package>
+    <package>com.google.firebase:firebase-firestore:24.7.0</package>
+    <package>com.google.firebase:firebase-firestore-unity:11.3.0</package>
   </packages>
   <files>
     <file>Assets/Plugins/Android/androidx.annotation.annotation-1.5.0.jar</file>
@@ -54,13 +54,13 @@
     <file>Assets/Plugins/Android/com.google.firebase.firebase-analytics-21.3.0.aar</file>
     <file>Assets/Plugins/Android/com.google.firebase.firebase-annotations-16.2.0.jar</file>
     <file>Assets/Plugins/Android/com.google.firebase.firebase-appcheck-interop-17.0.0.aar</file>
-    <file>Assets/Plugins/Android/com.google.firebase.firebase-app-unity-11.1.0.aar</file>
+    <file>Assets/Plugins/Android/com.google.firebase.firebase-app-unity-11.3.0.aar</file>
     <file>Assets/Plugins/Android/com.google.firebase.firebase-auth-interop-19.0.2.aar</file>
-    <file>Assets/Plugins/Android/com.google.firebase.firebase-common-20.3.2.aar</file>
+    <file>Assets/Plugins/Android/com.google.firebase.firebase-common-20.3.3.aar</file>
     <file>Assets/Plugins/Android/com.google.firebase.firebase-components-17.1.0.aar</file>
     <file>Assets/Plugins/Android/com.google.firebase.firebase-database-collection-18.0.1.aar</file>
-    <file>Assets/Plugins/Android/com.google.firebase.firebase-firestore-24.6.1.aar</file>
-    <file>Assets/Plugins/Android/com.google.firebase.firebase-firestore-unity-11.1.0.aar</file>
+    <file>Assets/Plugins/Android/com.google.firebase.firebase-firestore-24.7.0.aar</file>
+    <file>Assets/Plugins/Android/com.google.firebase.firebase-firestore-unity-11.3.0.aar</file>
     <file>Assets/Plugins/Android/com.google.firebase.firebase-installations-17.0.1.aar</file>
     <file>Assets/Plugins/Android/com.google.firebase.firebase-installations-interop-17.0.1.aar</file>
     <file>Assets/Plugins/Android/com.google.firebase.firebase-measurement-connector-19.0.0.aar</file>

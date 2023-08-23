@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Netcode;
 using UnityEngine;
 
-public class ScoreManager : NetworkBehaviour
+public class ScoreManager : MonoBehaviour
 {
     [SerializeField] GameObject[] _scores;
     [SerializeField] GameObject[] _goals;
@@ -28,11 +25,10 @@ public class ScoreManager : NetworkBehaviour
         _goals[playerIndex].GetComponent<Goal>().CloseGoal();
     }
 
-    [ClientRpc]
-    public void UpdateScoresClientRpc(ulong goalIndex)
+    public void UpdateScores(ulong goalIndex)
     {
-        Debug.Log($"[{nameof(ScoreManager)}] {nameof(UpdateScoresClientRpc)} goal {goalIndex}");
+        Debug.Log($"[{nameof(ScoreManager)}] {nameof(UpdateScores)} goal {goalIndex}");
 
-        _scores[goalIndex].GetComponent<Score>().ChangeScore();
+        _scores[(int)goalIndex].GetComponent<Score>().ChangeScore();
     }
 }

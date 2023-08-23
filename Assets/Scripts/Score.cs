@@ -35,12 +35,10 @@ public class Score : MonoBehaviour
 
     public void ChangeScore()
     {
-        _stars[_score - 1].SetActive(false);
-        _score--;
-
-        if (_score > 0)
+        if (_score == 0)
             return;
 
-        ResetScore();
+        _stars[_score - 1].SetActive(false);
+        _score--;
     }
 }

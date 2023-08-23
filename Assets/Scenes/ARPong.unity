@@ -2496,7 +2496,6 @@ GameObject:
   - component: {fileID: 755131904}
   - component: {fileID: 755131908}
   - component: {fileID: 755131907}
-  - component: {fileID: 755131909}
   m_Layer: 0
   m_Name: ScoreManager
   m_TagString: Untagged
@@ -2522,7 +2521,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 755131905}
         m_TargetAssemblyTypeName: ScoreManager, Assembly-CSharp
-        m_MethodName: UpdateScoresClientRpc
+        m_MethodName: UpdateScores
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2544,8 +2543,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0eabd52ac4858344381a8e3a77ea2a87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockedOutEvent: {fileID: 11400000, guid: 9fabf528daa28ed43be4890e54332a04, type: 2}
-  gameOverEvent: {fileID: 11400000, guid: 3cf632463740f49459c9d220ed257c93, type: 2}
   _scores:
   - {fileID: 63593147}
   - {fileID: 711017263}
@@ -2627,26 +2624,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &755131909
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 755131903}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 4181510101
-  AlwaysReplicateAsRoot: 0
-  SynchronizeTransform: 0
-  ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 1
-  SpawnWithObservers: 1
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 0
 --- !u!1 &805512496
 GameObject:
   m_ObjectHideFlags: 0
