@@ -20,6 +20,7 @@ Powering ARena Pong with cutting-edge packages and tools:
 - **Unity Relay**: Facilitates robust internet-based network connections.
 - **AR Foundation Remote**: Accelerates AR development, allowing testing within the Unity editor.
 - **ParrelSync**: Streamlines multiplayer development across multiple Unity instances.
+- **Scriptable Objects**: Bolstering gameplay adaptability and amplifying project scalability.
   
 > ⚙️ **Note**: This is just a glimpse. The project intricately blends numerous tools and packages for seamless performance.
 
