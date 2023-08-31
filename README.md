@@ -1,44 +1,34 @@
 # ARena Pong
 
-ARena Pong is a reimagined classic Pong game for up to 4 players, elevated into a 3D Augmented Reality (AR) experience. Utilizing AR cloud anchor technology, it provides players with a shared physical gameplay experience in a consistent physical location.
+Dive into the classic Pong game, reimagined for a 3D Augmented Reality (AR) world. Accommodate up to 4 players and engage in an immersive AR experience using AR cloud anchor technology, ensuring all participants share the same physical gameplay space.
 
-## Features
+## Key Features
 
-- **3D Augmented Reality Gameplay**: Immerse yourself in a three-dimensional Pong experience.
-- **Multiplayer Support**: Challenge up to 3 other players in this multiplayer AR environment.
-- **Active Player Movement**: Game mechanics designed to encourage players to move actively, breaking the sedentary mold of traditional gaming.
-- **Advanced Visuals**: Enhanced visuals using shader graphs.
+- 🕹 **3D AR Gameplay**: Dive deep into a three-dimensional Pong world.
+- 🌐 **Multiplayer Dynamics**: Engage with up to 3 competitors in a shared AR space.
+- 🏃 **Active Engagement**: Redefine gaming with mechanics that promote physical movement.
+- 🎨 **Vivid Visuals**: Beautified graphics via shader graphs.
 
-## Core Packages and Technologies
+## Essential Technologies
 
-Below are some of the key packages and technologies that power ARena Pong:
+Powering ARena Pong with cutting-edge packages and tools:
 
-- **[AR Cloud Anchor]**: Utilized for synchronizing the arena in physical location across players.
-- **[Package/Technology Name]**: Integrated for [specific purpose].
-- **[Package/Technology Name]**: Employed to [specific function].
+- **Google AR Cloud Anchor**: Synchronize the arena's physical position for all players.
+- **Firebase Firestore**: Data storage and sharing mechanism.
+- **AR Foundation**: Core AR functionality provider.
+- **Unity Netcode for GameObjects**: Manages multiplayer interactions.
+- **Unity Relay**: Facilitates robust internet-based network connections.
+- **AR Foundation Remote**: Accelerates AR development, allowing testing within the Unity editor.
+- **ParrelSync**: Streamlines multiplayer development across multiple Unity instances.
   
-> Note: While these are core technologies, the project also relies on numerous other packages and tools for optimal performance and functionality.
+> ⚙️ **Note**: This is just a glimpse. The project intricately blends numerous tools and packages for seamless performance.
 
-## Installation
+## System Requirements
 
-1. [Download the latest release here.](link-to-your-release)
-2. Follow the installation instructions specific to your device.
+- Compatible with AR-enabled Android and iOS devices.
+- Optimal performance with Unity 2021.3.24f.
 
-## Requirements
+## Gameplay Instructions
 
-- [List any specific hardware or software requirements here.]
+🔜 Detailed gameplay instructions are on the horizon!
 
-## How to Play
-
-1. **Setting Up**: [Brief instructions on setup.]
-2. **Starting a Game**: [Instructions on starting/joining a game.]
-3. **Game Controls**: [Basic controls and their descriptions.]
-
-## Credits
-
-- **Your Name**: Role
-- [Any other contributors or special acknowledgments.]
-
-## License
-
-This project is licensed under the [MIT License](link-to-license-file).
