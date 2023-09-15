@@ -9,6 +9,11 @@ Dive into the classic Pong game, reimagined for a 3D Augmented Reality (AR) worl
 - 🏃 **Active Engagement**: Redefine gaming with mechanics that promote physical movement.
 - 🎨 **Vivid Visuals**: Beautified graphics via shader graphs.
 
+## Demo and Details
+
+Experience ARena Pong in action and delve deeper into the project details on our [itch.io page](https://ngocnguyen95.itch.io/pongpar?secret=AcnbaKk01hMwLxP1vm1F6MDpTp4).
+
+
 ## Essential Technologies
 
 Powering ARena Pong with cutting-edge packages and tools:
