@@ -1,7 +1,9 @@
 using System.Collections;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
+using UnityEngine.XR.ARFoundation.Samples;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,7 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject _roomScrollView;
     [SerializeField] GameObject _roomCellPrefab;
 
-    public ARSessionOrigin arOrigin;
+    public XROrigin arOrigin;
 
     private void Awake()
     {
@@ -71,7 +73,7 @@ public class GameManager : MonoBehaviour
         }
 
         _roomScrollView.SetActive(true);
-        /*FirestoreManager.Instance.GetCloudAnchors((cloudAnchors) =>
+        FirestoreManager.Instance.GetCloudAnchors((cloudAnchors) =>
         {
             int i = 0;
             foreach (var cloudAnchor in cloudAnchors)
@@ -80,7 +82,7 @@ public class GameManager : MonoBehaviour
                 var roomCell = Instantiate(_roomCellPrefab, _roomScrollView.GetComponent<ScrollRect>().content);
                 roomCell.GetComponent<RoomCell>().Init("Room " + i, cloudAnchor.CloudAnchorId, cloudAnchor.CreateTime, cloudAnchor.ExpireTime);
             }
-        });*/
+        });
     }
 
 
