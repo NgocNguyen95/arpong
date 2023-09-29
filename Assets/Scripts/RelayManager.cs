@@ -98,4 +98,9 @@ public class RelayManager : MonoBehaviour
         NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(relayServerData);
         NetworkManager.Singleton.StartClient();
     }
+
+    public void Disconnect()
+    {
+        NetworkManager.Singleton.Shutdown();
+    }
 }
