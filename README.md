@@ -32,7 +32,7 @@ Powering ARena Pong with cutting-edge packages and tools:
 ## System Requirements
 
 - Compatible with AR-enabled Android and iOS devices.
-- Optimal performance with Unity 2023.1.14f1.
+- Optimal performance with Unity 2023.2.7f1.
 
 ## Gameplay Instructions
 
