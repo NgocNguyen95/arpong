@@ -1,7 +1,14 @@
 fileFormatVersion: 2
-guid: b6eec4a39498746a8b0d19247976c769
+guid: 91d3781712afe4f9db95ffe63019cbf3
 DefaultImporter:
   externalObjects: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 201106
+  packageName: AR Foundation Remote 2.0
+  packageVersion: 2.0.37-release.0
+  assetPath: Assets/Plugins/ARFoundationRemoteInstaller/com.kyrylokuzyk.arfoundationremote.tgz
+  uploadId: 644565

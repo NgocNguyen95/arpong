@@ -30,6 +30,7 @@ public class ARPongTable : NetworkBehaviour
     int _knockedOutPlayers = 0;
 
     bool _isGameOver;
+    bool _isGameStart;
     private string _goalTag = "Goal";
     private NetworkList<PlayerData> _playerDataNetworkList;
 
@@ -63,13 +64,14 @@ public class ARPongTable : NetworkBehaviour
     }
 
 
-    void InitPlayGround()
+    public void StartGame()
     {
+        _isGameStart = true;
         SpawnBall();
     }
 
 
-    public void SpawnBall()
+    void SpawnBall()
     {
         if (!NetworkManager.Singleton.IsServer)
             return;
@@ -206,6 +208,9 @@ public class ARPongTable : NetworkBehaviour
                 playerJoin.Raise((ulong)networkListEvent.Index);
                 break;
             case NetworkListEvent<PlayerData>.EventType.Value:
+                if (!_isGameStart)
+                    return;
+
                 if (networkListEvent.Value.score > 0)
                     return;
 

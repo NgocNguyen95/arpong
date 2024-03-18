@@ -21,6 +21,7 @@ public class Goal : NetworkBehaviour
     public void CloseGoal()
     {
         _isOpen = false;
+        gameObject.tag = "Untagged";
     }
 
     private void OnCollisionEnter(Collision other)
