@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour
         }
 
         _roomScrollView.SetActive(true);
-        /*FirestoreManager.Instance.GetCloudAnchors((cloudAnchors) =>
+        FirestoreManager.Instance.GetCloudAnchors((cloudAnchors) =>
         {
             int i = 0;
             foreach (var cloudAnchor in cloudAnchors)
@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour
                 var roomCell = Instantiate(_roomCellPrefab, _roomScrollView.GetComponent<ScrollRect>().content);
                 roomCell.GetComponent<RoomCell>().Init("Room " + i, cloudAnchor.CloudAnchorId, cloudAnchor.CreateTime, cloudAnchor.ExpireTime);
             }
-        });*/
+        });
     }
 
 
